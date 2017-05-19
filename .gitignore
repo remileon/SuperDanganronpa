@@ -1,0 +1,7 @@
+Library/
+Temp/
+out.exe
+out_Data/
+.vs/
+*.sln
+*.csproj
