@@ -27,14 +27,35 @@ public class bw : MonoBehaviour {
             interval += maxInterval;
         }
 
-        float rotateSpeed = 60;
-        trans.Rotate(new Vector3(0, 0, rotateSpeed * Time.deltaTime));
+        float rotateSpeed = 120;
+        if (Input.GetKey(KeyCode.Q)) { 
+            trans.Rotate(new Vector3(0, 0, rotateSpeed * Time.deltaTime));
+        }
+        if (Input.GetKey(KeyCode.E))
+        {
+            trans.Rotate(new Vector3(0, 0, -rotateSpeed * Time.deltaTime));
+        }
         //trans.position -= new Vector3(Time.deltaTime, 0, 0);
 
-        float speed = Random.Range(0, 5);
+        float speed = 5;
         float distance = (Time.deltaTime * speed);
         float deltaX = -Mathf.Sin(trans.rotation.eulerAngles.z / 360f * 2 * Mathf.PI) * distance;
         float deltaY = Mathf.Cos(trans.rotation.eulerAngles.z / 360f * 2 * Mathf.PI) * distance;
-        trans.position += new Vector3(deltaX, deltaY, 0);
+        if (Input.GetKey(KeyCode.W))
+        {
+            trans.position += new Vector3(deltaX, deltaY, 0);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            trans.position -= new Vector3(deltaX, deltaY, 0);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            trans.position += new Vector3(-deltaY, deltaX, 0);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            trans.position += new Vector3(deltaY, -deltaX, 0);
+        }
     }
 }
