@@ -15,8 +15,9 @@ public class Bullet : MonoBehaviour {
 	void Start () {
         float deltaX = -Mathf.Sin(trans.rotation.eulerAngles.z / 360f * 2 * Mathf.PI);
         float deltaY = Mathf.Cos(trans.rotation.eulerAngles.z / 360f * 2 * Mathf.PI);
-
-        GetComponent<Rigidbody2D>().velocity = new Vector2(deltaX, deltaY) * speed;
+        float deltaZ = 0;
+        
+        GetComponent<Rigidbody>().velocity = new Vector3(deltaX, deltaY, deltaZ) * speed;
 	}
 	
 	// Update is called once per frame
