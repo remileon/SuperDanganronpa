@@ -3,9 +3,10 @@ using System.Collections;
 
 public class Bullet : MonoBehaviour {
 
-    public Transform trans;
+    private Transform trans;
     
-    [SerializeField] private float speed = 10f;
+    [SerializeField] private float speed = 5.0f;
+    private float life = 1.5f;
 
     void Awake()
     {
@@ -17,14 +18,20 @@ public class Bullet : MonoBehaviour {
         float deltaY = Mathf.Cos(trans.rotation.eulerAngles.z / 360f * 2 * Mathf.PI);
         float deltaZ = 0;
         
-        GetComponent<Rigidbody>().velocity = new Vector3(deltaX, deltaY, deltaZ) * speed;
+//        GetComponent<Rigidbody>().velocity = new Vector3(deltaX, deltaY, deltaZ) * speed;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        //float distance = (Time.deltaTime * speed);
-        //float deltaX = -Mathf.Sin(trans.rotation.eulerAngles.z / 360f * 2 * Mathf.PI) * distance;
-        //float deltaY = Mathf.Cos(trans.rotation.eulerAngles.z / 360f * 2 * Mathf.PI) * distance;
-        //trans.position += new Vector3(deltaX, deltaY, 0);
+        float distance = (Time.deltaTime * speed);
+        float deltaX = -Mathf.Sin(trans.rotation.eulerAngles.z / 360f * 2 * Mathf.PI) * distance;
+        float deltaY = Mathf.Cos(trans.rotation.eulerAngles.z / 360f * 2 * Mathf.PI) * distance;
+        trans.position += new Vector3(deltaX, deltaY, 0);
+
+        life -= Time.deltaTime;
+        if (life <= 0)
+        {
+            Destroy(gameObject);
+        }
 	}
 }

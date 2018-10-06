@@ -3,8 +3,12 @@ guid: 62b3621414781b4499e912ef888ec166
 timeCreated: 1495210759
 licenseType: Free
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - trans: {instanceID: 0}
+  - ExplodeEffect: {fileID: 1750046272117532, guid: 6f51f1cc5fb19499ba0e9d0f04a58c58,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
