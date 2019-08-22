@@ -1,0 +1,15 @@
+﻿function say(str, speed, auto)
+    Say(str, speed, auto)
+    coroutine.yield()
+end
+
+function choose(str, options)
+    idx = coroutine.yield()
+    options[idx].action()
+end
+
+function curry(func, param)
+    return function()
+        return func(param)
+    end
+end
