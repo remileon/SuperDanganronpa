@@ -4,6 +4,7 @@
 end
 
 function choose(str, options)
+    Choose(str, options)
     idx = coroutine.yield()
     options[idx].action()
 end

@@ -1,19 +1,27 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using common_scripts;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Coroutine = MoonSharp.Interpreter.Coroutine;
 
 public class Test : MonoBehaviour
 {
-    private Coroutine coroutine;
     public GameObject textField;
+    public GameObject optionPrefab;
+    public int optionMargin;
+    
+    private Coroutine coroutine;
 
     private double textTime = 0;
     private double textSpeed = 0;
     private string text = "";
     private bool textAuto = false;
     private Text textComponent;
+
+    private IList<IDictionary> options;
 
     /**
      * speed: char per second
@@ -28,11 +36,26 @@ public class Test : MonoBehaviour
         UpdateText();
     }
 
+    private void Choose(string text, IList<IDictionary> options)
+    {
+        double speed = 1000000.0f;
+        this.text = text;
+        this.textTime = 1;
+        this.textSpeed = speed;
+        this.textAuto = false;
+        UpdateText();
+
+        this.options = options;
+        Debug.Log(JsonUtility.ToJson(options));
+        ShowChooses(options);
+    }
+
     // Use this for initialization
     private void Start()
     {
         textComponent = textField.GetComponent<Text>();
         MoonSharpManager.RegisterFunc("Say", (Action<string, double, bool>) Say);
+        MoonSharpManager.RegisterFunc("Choose", (Action<string, IList<IDictionary>>) Choose);
         coroutine = MoonSharpManager.RunCoroutine("test");
     }
 
@@ -62,5 +85,24 @@ public class Test : MonoBehaviour
         {
             coroutine.Resume();
         }
+    }
+
+    private void ShowChooses(IList<IDictionary> options)
+    {
+        for (var i = 0; i < options.Count; i++)
+        {
+            IDictionary option = options[i];
+            string info = option["info"] as string;
+            GameObject optionGameObject = Instantiate(optionPrefab, gameObject.transform, false);
+
+            var rectTransform = optionGameObject.GetComponent<RectTransform>();
+            Debug.Log((options.Count - i - 1) * (optionMargin + rectTransform.rect.height));
+            var rectTransformAnchoredPosition = rectTransform.anchoredPosition;
+            rectTransformAnchoredPosition.y += (options.Count - i - 1) * (optionMargin + rectTransform.rect.height);
+            rectTransform.anchoredPosition = rectTransformAnchoredPosition;
+
+            optionGameObject.GetComponentInChildren<TextMeshProUGUI>().text = info;
+        }
+
     }
 }
