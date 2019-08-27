@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 114716478752028638}
   - component: {fileID: 114995145074593920}
   - component: {fileID: 82751313638670356}
+  - component: {fileID: -2118474112249384298}
   m_Layer: 0
   m_Name: GlobalManager
   m_TagString: Untagged
@@ -51,6 +52,9 @@ MonoBehaviour:
   moveRight: 100
   turnLeft: 113
   turnRight: 101
+  avgConfirm: 0d0000006a00000020000000
+  avgUp: 7700000011010000
+  avgDown: 7300000012010000
 --- !u!114 &114995145074593920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,3 +163,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &-2118474112249384298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586577351912604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2229a66153fc9e54aafd67ed0aa597ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

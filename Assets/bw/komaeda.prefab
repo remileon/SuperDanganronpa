@@ -101,6 +101,7 @@ MonoBehaviour:
     xMax: 6.7
     yMin: -3.7
     yMax: 3.7
+  uiLife: {fileID: 0}
 --- !u!114 &114399101529377700
 MonoBehaviour:
   m_ObjectHideFlags: 0

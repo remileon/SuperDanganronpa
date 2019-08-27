@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class Boundary
@@ -12,7 +14,10 @@ public class bw : MonoBehaviour
 
     private Transform trans;
     public Boundary boundary;
+    public UiLife uiLife;
 
+    private double protectTime = 0f;
+    
     void Awake()
     {
         trans = GetComponent<Transform>();
@@ -21,16 +26,26 @@ public class bw : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
+        uiLife = GameObject.Find("LifeGroup").GetComponent<UiLife>();
+        uiLife.Init(GameStatus.Instance.bwLife);
     }
 	
     // Update is called once per frame
     void Update()
     {
-        this.move();
+        this.Move();
+        this.protectTime = Math.Max(0, this.protectTime - Time.deltaTime);
+    }
+    
+    void OnTriggerEnter(Collider other)
+    {
+        if (CheckCollide(other))
+        {
+            DoCollide();
+        }
     }
 
-    void move()
+    void Move()
     {
 
         float rotateSpeed = 120;
@@ -70,5 +85,39 @@ public class bw : MonoBehaviour
             Mathf.Clamp(trans.position.y, boundary.yMin, boundary.yMax),
             0
         );
+    }
+
+    bool CheckCollide(Collider other)
+    {
+        bool collide = false;
+        string[] tags = {"enemy_bullet_red", "enemy_bullet_orange"};
+        foreach (string tag in tags)
+        {
+            if (tag.Equals(other.gameObject.tag))
+            {
+                collide = true;   
+            }
+        }
+        return collide;
+    }
+
+    void DoCollide()
+    {
+        if (protectTime > 0)
+        {
+            return;
+        }
+
+        protectTime = 1f;
+        var gameStatus = GameStatus.Instance;
+        --gameStatus.bwLife;
+        uiLife.LoseLife();
+        if (gameStatus.bwLife <= 0)
+        {
+            // todo : 死亡特效
+            ++gameStatus.failCount;
+            gameStatus.scenario = "fail";
+            SceneManager.LoadScene("avg", LoadSceneMode.Single);
+        }
     }
 }

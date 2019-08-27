@@ -12,6 +12,10 @@ public class KeyConfig : MonoBehaviour {
 	public KeyCode turnLeft = KeyCode.Q;
 	public KeyCode turnRight = KeyCode.E;
 
+	public KeyCode[] avgConfirm = {KeyCode.Return, KeyCode.J, KeyCode.Space};
+	public KeyCode[] avgUp = {KeyCode.W, KeyCode.UpArrow};
+	public KeyCode[] avgDown = {KeyCode.S, KeyCode.DownArrow};
+	
 	void Awake() {
 		if (Instance == null) {
 			Instance = this;

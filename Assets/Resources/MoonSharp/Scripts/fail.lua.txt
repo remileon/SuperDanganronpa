@@ -1,4 +1,9 @@
-﻿function run()
+﻿NORMAL = 0
+HOPE = 1
+DESPAIR = 2
+GIVEUP = 3
+
+function main()
     --say("嗨小朋友们，大家好！还记得我是谁吗？") 
     --say("对了！我就是为蓝猫配音的演员，葛平！")
     --say("真是的说起现在的年轻人一有什么事就来凑热闹大白天就到这种地方来消磨时间工作不用干啦做律师的有这么空闲吗这样的话大婶也去当律师算啦大婶儿我年轻时从来没有像你们这样浪费过时间女孩子年纪轻轻的打却扮成这样啊这可怎么办日本的未来会成个什么样子真是的我的儿子也是整整3年都不来个电话", 50, true)
@@ -7,7 +12,28 @@
     --say("我话说在前头大婶啊才不会做那种在人家背后指指点点的事说到现在的年轻人啊都那样啦老是爱找别人的缺点大婶好伤心阿还有啊话说这次小衣袋以前的电影啊终于开始贩卖了而且还是那个叫什么DVD的说到那个啊现在什么字都要用洋文真是莫名其妙到连大婶都没办法了", 50, true)
     --say("之前也这样啦坏掉的桥旁边写着‘这条桥坏了不能过’可是一个光头的小子却想要过去大婶很亲切的说“很危险喔”他竟然不听啦还说“不走旁边走中间就好了”开什么玩笑啊真是的说那什么嚣张的话嘛于是大婶儿就把他给推下去了啦", 50, true)
     --say("哎呀哎呀笑死人了那种样子还叫”大哥哥”啊对啊带面具看不到脸啊而且还是兔子面具真是杰作不过啊不这样做的话电视会坏掉的真是的在你旁边做体操的小孩子才丢脸真的", 50, true)
-    choose("let's choose", {{info="a", action=a}, {info="b", action=b}})
+    --choose("let's choose", {{info="a", action=a}, {info="b", action=b}})
+    
+    if FailCount() <= 1 then
+        say("加油鸭")
+        ResumeBattle(NORMAL)
+    else
+        say("你不行了吗")
+        say("我这里有好东西")
+        choose("带上它重新出发吧", {
+            {info="我不会放弃「希望」！", action=curry(ResumeBattle, HOPE)},
+            {info="「绝望」是不可缺少的！", action=curry(ResumeBattle, DESPAIR)},
+            {info="......", action=netherHopeOrDespair}
+        })
+    end
+end
+
+function netherHopeOrDespair()
+    say("「希望」和「绝望」都不选择...你要怎么做？")
+    choose("「希望」和「绝望」都不选择...你要怎么做？", {
+        {info="我要靠自己的力量开创「未来」！", action=curry(ResumeBattle, NORMAL)},
+        {info="我要否定「弹丸论破」！", action=curry(ResumeBattle, GIVEUP)},
+    })
 end
 
 function a()
@@ -18,4 +44,4 @@ function b()
     say("you chose route b")
 end
 
-return run
+return main

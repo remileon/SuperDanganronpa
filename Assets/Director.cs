@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using common_scripts;
 using UnityEngine;
 
 public class Director : MonoBehaviour {
@@ -11,7 +13,7 @@ public class Director : MonoBehaviour {
 
     void Awake()
     {
-        float delay = 4.15f;
+        float delay = GameStatus.Instance.bwDelay;
         Invoke("SummonBw", delay);
         Invoke("CreateFirstWave", delay + 1);
     }
@@ -27,7 +29,23 @@ public class Director : MonoBehaviour {
 
     void SummonBw()
     {
+        var gameStatus = GameStatus.Instance;
+        var bwBuffs = gameStatus.bwBuffs;
+        // negative
+        if (bwBuffs.Contains(BwBuff.Negative))
+        {
+            return;
+        }
+        // hope
+        gameStatus.bwLife = bwBuffs.Contains(BwBuff.Hope) ? 15 : 3;
+        // despair
+        if (bwBuffs.Contains(BwBuff.Despair))
+        {
+            // todo: attach more weapons
+        }
+        // negative
         Instantiate(bw);
+
     }
 
     bool ShouldCreateNextWave()
