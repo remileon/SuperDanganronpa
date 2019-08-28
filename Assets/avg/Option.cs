@@ -5,7 +5,7 @@ using UnityEngine;
 public class Option : MonoBehaviour
 {
     private Animator animator;
-    private static readonly int hovered = Animator.StringToHash("hovered");
+    private static readonly int hoveredHash = Animator.StringToHash("hovered");
 
     // Start is called before the first frame update
     private void Awake()
@@ -15,7 +15,7 @@ public class Option : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -23,12 +23,18 @@ public class Option : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            animator.SetBool(hovered, true);
+            animator.SetBool(hoveredHash, true);
         }
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            animator.SetBool(hovered, false);
+            animator.SetBool(hoveredHash, false);
         }
     }
+
+    public void SetHovered(bool hovered)
+    {
+        animator.SetBool(hoveredHash, hovered);
+    }
+
 }

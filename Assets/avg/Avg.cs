@@ -11,13 +11,12 @@ using Coroutine = MoonSharp.Interpreter.Coroutine;
 public class Avg : MonoBehaviour
 {
     private Coroutine coroutine;
-    public int optionMargin;
-    public GameObject optionPrefab;
-
-    private IList<IDictionary> options;
-
+    public OptionGroup optionGroup;
+    
     private bool textAuto;
     public GameObject textField;
+
+    private bool isOption = false;
 
     /**
      * speed: char per second
@@ -29,6 +28,7 @@ public class Avg : MonoBehaviour
         {
             if (textAuto) coroutine.Resume();
         });
+        isOption = false;
     }
 
     private void Choose(string text, IList<IDictionary> options)
@@ -39,10 +39,14 @@ public class Avg : MonoBehaviour
         {
             if (textAuto) coroutine.Resume();
         });
-
-        this.options = options;
-//        Debug.Log(JsonUtility.ToJson(options));
-        ShowChooses(options);
+        
+        optionGroup.InitOptions(
+            options.Select(option => option["info"] as string).ToList(),
+            arg =>
+            {
+                optionGroup.ClearOptions();
+            });
+        isOption = true;
     }
 
     private int FailCount()
@@ -77,28 +81,20 @@ public class Avg : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
-            //            Debug.Log("enter");
-            coroutine.Resume(1);
-
-        if (Input.GetKeyDown(KeyCode.Space)) coroutine.Resume(2);
-    }
-
-    private void ShowChooses(IList<IDictionary> options)
-    {
-        for (var i = 0; i < options.Count; i++)
+        var keyConfig = KeyConfig.Instance;
+        foreach (var keyCode in keyConfig.avgConfirm)
         {
-            var option = options[i];
-            var info = option["info"] as string;
-            var optionGameObject = Instantiate(optionPrefab, gameObject.transform, false);
-
-            var rectTransform = optionGameObject.GetComponent<RectTransform>();
-            Debug.Log((options.Count - i - 1) * (optionMargin + rectTransform.rect.height));
-            var rectTransformAnchoredPosition = rectTransform.anchoredPosition;
-            rectTransformAnchoredPosition.y += (options.Count - i - 1) * (optionMargin + rectTransform.rect.height);
-            rectTransform.anchoredPosition = rectTransformAnchoredPosition;
-
-            optionGameObject.GetComponentInChildren<TextMeshProUGUI>().text = info;
+            if (Input.GetKeyDown(keyCode))
+            {
+                if (isOption)
+                {
+                    coroutine.Resume(optionGroup.GetCurrentIdx() + 1);
+                }
+                else
+                {
+                    coroutine.Resume();
+                }
+            }
         }
     }
 }
