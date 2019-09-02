@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 818493840}
   - component: {fileID: 818493839}
   - component: {fileID: 818493841}
+  - component: {fileID: 818493842}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -303,6 +304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 381e7c25764a34c1a83f0b70d73217aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseEnemy: {fileID: 8920194588550628738, guid: c566ddf4c51c40445918c67166930456,
+    type: 3}
   bw: {fileID: 1308034230381730, guid: ec3ea9790996b45a0856a96ca710d0d9, type: 3}
   enemyWaves:
   - enemies:
@@ -408,6 +411,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interval: 0.5
   starEffect: {fileID: 1156527019671630, guid: 948e0bb282bfb264c94ef83989da80a0, type: 3}
+--- !u!114 &818493842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818493838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0700f77519832fd47897965cf20518a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseEnemy: {fileID: 8920194588550628738, guid: c566ddf4c51c40445918c67166930456,
+    type: 3}
 --- !u!1001 &846094850
 PrefabInstance:
   m_ObjectHideFlags: 0

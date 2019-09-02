@@ -56,7 +56,7 @@ public class Avg : MonoBehaviour
 
     private void ResumeBattle(BwBuff bwBuff)
     {
-        Debug.Log(bwBuff);
+//        Debug.Log(bwBuff);
         var gameStatus = GameStatus.Instance;
         if (bwBuff > 0)
         {

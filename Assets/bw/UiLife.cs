@@ -11,7 +11,7 @@ public class UiLife : MonoBehaviour
     {
         while (lifeNum-- > 0)
         {
-            Debug.Log(lifeNum);
+//            Debug.Log(lifeNum);
             var life = Instantiate(lifePrefab, gameObject.transform, false);
             lifes.Add(life);
         }

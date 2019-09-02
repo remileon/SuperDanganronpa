@@ -1,41 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using common_scripts;
+using TMPro;
 using UnityEngine;
 
-public class Director : MonoBehaviour {
+public class Director : MonoBehaviour
+{
     public GameObject bw;
+    private GameObject[] curEnemies;
+
+    private readonly int curWave = 0;
     public EnemyWaves[] enemyWaves;
 
-    private int curWave = 0;
-    private GameObject[] curEnemies = null;
-
-    void Awake()
+    private void Awake()
     {
-        float delay = GameStatus.Instance.bwDelay;
+        var delay = GameStatus.Instance.bwDelay;
         Invoke("SummonBw", delay);
-        Invoke("CreateFirstWave", delay + 1);
+        var scenario = gameObject.GetComponent<ScenarioFactory>()
+            .create();
+
+        scenario.Run(-1);
     }
 
-    void Update()
+    private void Update()
     {
-        if (ShouldCreateNextWave())
-        {
-            ++curWave;
-            CreateWave(curWave);
-        }
     }
 
-    void SummonBw()
+    private void SummonBw()
     {
         var gameStatus = GameStatus.Instance;
         var bwBuffs = gameStatus.bwBuffs;
         // negative
-        if (bwBuffs.Contains(BwBuff.Negative))
-        {
-            return;
-        }
+        if (bwBuffs.Contains(BwBuff.Negative)) return;
         // hope
         gameStatus.bwLife = bwBuffs.Contains(BwBuff.Hope) ? 15 : 3;
         // despair
@@ -43,43 +38,33 @@ public class Director : MonoBehaviour {
         {
             // todo: attach more weapons
         }
+
         // negative
         Instantiate(bw);
-
     }
 
-    bool ShouldCreateNextWave()
+    private bool ShouldCreateNextWave()
     {
-        if (curEnemies == null)
-        {
-            return false;
-        }
-        if (curWave >= enemyWaves.Length - 1)
-        {
-            return false;
-        }
-        foreach (GameObject enemy in curEnemies)
-        {
+        if (curEnemies == null) return false;
+        if (curWave >= enemyWaves.Length - 1) return false;
+        foreach (var enemy in curEnemies)
             if (enemy != null)
-            {
                 return false;
-            }
-        }
         return true;
     }
 
-    void CreateFirstWave()
+    private void CreateFirstWave()
     {
         CreateWave(0);
     }
 
-    void CreateWave(int curWave)
+    private void CreateWave(int curWave)
     {
         curEnemies = new GameObject[enemyWaves[curWave].enemies.Length];
-        for (int i = 0; i < enemyWaves[curWave].enemies.Length; ++i)
+        for (var i = 0; i < enemyWaves[curWave].enemies.Length; ++i)
         {
-            GameObject enemy = enemyWaves[curWave].enemies[i];
-            GameObject newEnemy = Instantiate(enemy);
+            var enemy = enemyWaves[curWave].enemies[i];
+            var newEnemy = Instantiate(enemy);
             curEnemies[i] = newEnemy;
         }
     }
