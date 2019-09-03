@@ -117,7 +117,7 @@ public class bw : MonoBehaviour
             // todo : 死亡特效
             ++gameStatus.failCount;
             gameStatus.scenario = "fail";
-            SceneManager.LoadScene("avg", LoadSceneMode.Single);
+            SceneManager.LoadScene("avg/avg", LoadSceneMode.Single);
         }
     }
 }

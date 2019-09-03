@@ -26,6 +26,11 @@ public class Scenario
         return this;
     }
 
+    public Scenario Spawn(ScenarioFactory.EnemyBuilder builder)
+    {
+        return Spawn(builder.build);
+    }
+
     public Scenario Checkpoint()
     {
         var idx = actions.Count;
