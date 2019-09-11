@@ -70,6 +70,7 @@ public class Avg : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
+        
         MoonSharpManager.RegisterFunc("Say", (Action<string, double, bool>) Say);
         MoonSharpManager.RegisterFunc("Choose", (Action<string, IList<IDictionary>>) Choose);
         MoonSharpManager.RegisterFunc("FailCount", (Func<int>) FailCount);

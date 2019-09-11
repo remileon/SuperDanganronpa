@@ -10,10 +10,12 @@ public class ShowText : MonoBehaviour
     private Action textFinishCallback;
 
     private double textTime;
+    private AudioSource audioSource;
 
     private void Awake()
     {
         textComponent = GetComponent<Text>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -44,7 +46,15 @@ public class ShowText : MonoBehaviour
             return;
         }
         var cur = (int) (textSpeed * textTime);
-        textComponent.text = text.Substring(0, Math.Min(cur, text.Length));
+        var newText = text.Substring(0, Math.Min(cur, text.Length));
+        if (textComponent.text.Length < newText.Length)
+        {
+            if (!audioSource.isPlaying || audioSource.time > 0.05)
+            {
+                audioSource.Play();
+            }
+        }
+        textComponent.text = newText;
         if (textComponent.text.Length == text.Length)
         {
             if (textFinishCallback != null)

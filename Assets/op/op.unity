@@ -649,7 +649,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d3d73b9a15464f6082224641ecdde8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quit: 27
 --- !u!1 &1563037489
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,6 +999,11 @@ PrefabInstance:
     - target: {fileID: 4991184962476092, guid: b4341e35ec51741f2981e1369a04c0ea, type: 3}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -2118474112249384298, guid: b4341e35ec51741f2981e1369a04c0ea,
+        type: 3}
+      propertyPath: enemyProgress
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4341e35ec51741f2981e1369a04c0ea, type: 3}

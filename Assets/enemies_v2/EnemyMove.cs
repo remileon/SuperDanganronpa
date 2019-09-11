@@ -14,11 +14,11 @@ public class EnemyMove : MonoBehaviour
 
     private float currentTime;
     public Vector3 exitPos = new Vector3(0, 5, 0);
-    public float exitTime = 0.5f;
+    public float exitTime = 0.2f;
     public Vector3 initPos = new Vector3(0, 4.62f, 0);
 
 
-    public float initTime = 0.5f;
+    public float initTime = 0.2f;
     private float totalCubicLength;
     private Transform trans;
 
@@ -84,7 +84,7 @@ public class EnemyMove : MonoBehaviour
         }
         else if (currentTime <= initTime + activeTime + exitTime)
         {
-            trans.position = Vector3.Lerp(activePos + cubicPaths[cubicPaths.Count - 1][2], exitPos,
+            trans.position = Vector3.Lerp(activePos + (cubicLengths.Count <= 0 ? new Vector3(0, 0,0 ) : cubicPaths[cubicPaths.Count - 1][2]), exitPos,
                 (currentTime - initTime - activeTime) / exitTime);
         }
         else

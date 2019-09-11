@@ -12,8 +12,13 @@ public class AttachWeapons : MonoBehaviour {
     {
         trans = GetComponent<Transform>();
 
+    }
+    
+    // Use this for initialization
+    void Start () {
         Invoke("DoAttach", Mathf.Max(delay, 0));
     }
+    
 
     void DoAttach() {
         foreach (WeaponSlot weaponSlot in weaponSlots) {
@@ -21,7 +26,7 @@ public class AttachWeapons : MonoBehaviour {
             newWeapon.transform.Rotate(weaponSlot.rotate);
             newWeapon.transform.parent = this.transform;
             Dictionary<string, object> dict = new Dictionary<string, object>();
-            if (weaponSlot.shootInterval.Length > 0)
+            if (weaponSlot.shootInterval?.Length > 0)
             {
                 dict.Add("shootInterval", float.Parse(weaponSlot.shootInterval));
             }
@@ -33,17 +38,21 @@ public class AttachWeapons : MonoBehaviour {
             {
                 dict.Add("bullet", weaponSlot.bullet);
             }
+
+            if (weaponSlot.delay?.Length > 0)
+            {
+                dict.Add("delay", float.Parse(weaponSlot.delay));
+            }
+
+            if (weaponSlot.bulletSpeed?.Length > 0)
+            {
+                dict.Add("bulletSpeed", float.Parse(weaponSlot.bulletSpeed));
+            }
             if (dict.Count > 0)
             {
                 newWeapon.SendMessage("ModifyAttributes", dict);
             }
         }
-    }
-
-
-    // Use this for initialization
-    void Start () {
-
     }
 
     // Update is called once per frame

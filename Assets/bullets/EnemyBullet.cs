@@ -5,7 +5,7 @@ public class EnemyBullet : MonoBehaviour {
 
     private Transform trans;
 
-    [SerializeField] private float speed = 5.0f;
+    public float speed = 5.0f;
     private float life = 10f;
 
     void Awake()

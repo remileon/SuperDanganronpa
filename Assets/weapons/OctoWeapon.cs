@@ -18,6 +18,7 @@ public class OctoWeapon : BaseWeapon
         {
             GameObject newBullet = Instantiate(bullet, trans.position + new Vector3(), trans.rotation) as GameObject;
             newBullet.transform.Rotate(new Vector3(0, 0, 45 * i));
+            BaseModify(newBullet);
         }
     }
 }

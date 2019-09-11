@@ -17,6 +17,7 @@ public class OpManager : MonoBehaviour {
 
     void NextScene()
     {
+	    GameStatus.Instance.bwDelay = 4.15f;
         SceneManager.LoadScene("battle", LoadSceneMode.Single);
     }
 }

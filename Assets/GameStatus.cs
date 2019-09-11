@@ -7,10 +7,11 @@ using UnityEngine;
 
 public class GameStatus : MonoBehaviour
 {
+    public bool isDebugging = true;
     public static GameStatus Instance { get; private set; }
 
     public int bwLife = 3;
-    public int enemyProgress = 0;
+    public int enemyProgress = 10;
     public BwBuff[] bwBuffs = {};
     public int failCount = 0;
 
@@ -19,6 +20,7 @@ public class GameStatus : MonoBehaviour
 //    public float bwDelay = 4.15f;
     // todo: deving
     public float bwDelay = 0.15f;
+    public bool isShuttingDown = false;
 
     void Awake() {
         if (Instance == null) {
@@ -39,5 +41,10 @@ public class GameStatus : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnApplicationQuit()
+    {
+        isShuttingDown = true;
     }
 }

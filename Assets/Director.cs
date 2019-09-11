@@ -1,24 +1,26 @@
 ﻿using System.Linq;
+using System.Threading;
 using common_scripts;
-using TMPro;
 using UnityEngine;
 
 public class Director : MonoBehaviour
 {
-    public GameObject bw;
-    private GameObject[] curEnemies;
-
     private readonly int curWave = 0;
+    public GameObject bw;
+
+    private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+    private GameObject[] curEnemies;
     public EnemyWaves[] enemyWaves;
+    private Scenario scenario;
 
     private void Awake()
     {
         var delay = GameStatus.Instance.bwDelay;
         Invoke("SummonBw", delay);
-        var scenario = gameObject.GetComponent<ScenarioFactory>()
+        scenario = gameObject.GetComponent<ScenarioFactory>()
             .create();
 
-        scenario.Run(-1);
+        scenario.Run(GameStatus.Instance.enemyProgress, cancellationTokenSource.Token);
     }
 
     private void Update()
@@ -33,14 +35,25 @@ public class Director : MonoBehaviour
         if (bwBuffs.Contains(BwBuff.Negative)) return;
         // hope
         gameStatus.bwLife = bwBuffs.Contains(BwBuff.Hope) ? 15 : 3;
+        if (gameStatus.isDebugging)
+        {
+            gameStatus.bwLife = 30;
+        }
         // despair
         if (bwBuffs.Contains(BwBuff.Despair))
         {
             // todo: attach more weapons
         }
-
         // negative
-        Instantiate(bw);
+
+        var gameObject = Instantiate(bw);
+        gameObject.GetComponent<Bw>().director = this;
+    }
+
+    public void Cut()
+    {
+        GameStatus.Instance.enemyProgress = scenario.currentCheckpoint;
+        cancellationTokenSource.Cancel();
     }
 
     private bool ShouldCreateNextWave()

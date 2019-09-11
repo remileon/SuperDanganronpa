@@ -13,4 +13,6 @@ public class WeaponSlot {
     public string shootInterval;
     public string rotateSpeed;
     public GameObject bullet;
+    public string delay;
+    public string bulletSpeed;
 }

@@ -9,8 +9,8 @@ public class InitEnemyColliderSize : MonoBehaviour
     void Start()
     {
         GetComponent<TextMeshPro>().ForceMeshUpdate();
-        Debug.Log("tmp text: " + GetComponent<TextMeshPro>().text);
-        Debug.Log("tmp width: " + GetComponent<TextMeshPro>().GetRenderedValues().x);
+//        Debug.Log("tmp text: " + GetComponent<TextMeshPro>().text);
+//        Debug.Log("tmp width: " + GetComponent<TextMeshPro>().GetRenderedValues().x);
 
         var tmp = GetComponent<TextMeshPro>();
         tmp.ForceMeshUpdate();

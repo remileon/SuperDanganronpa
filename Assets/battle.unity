@@ -212,67 +212,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &659527842
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4779437783771076, guid: 948e0bb282bfb264c94ef83989da80a0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4779437783771076, guid: 948e0bb282bfb264c94ef83989da80a0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4779437783771076, guid: 948e0bb282bfb264c94ef83989da80a0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 4779437783771076, guid: 948e0bb282bfb264c94ef83989da80a0, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4779437783771076, guid: 948e0bb282bfb264c94ef83989da80a0, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4779437783771076, guid: 948e0bb282bfb264c94ef83989da80a0, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4779437783771076, guid: 948e0bb282bfb264c94ef83989da80a0, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4779437783771076, guid: 948e0bb282bfb264c94ef83989da80a0, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 198744463250510744, guid: 948e0bb282bfb264c94ef83989da80a0,
-        type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.atime1
-      value: 65535
-      objectReference: {fileID: 0}
-    - target: {fileID: 198744463250510744, guid: 948e0bb282bfb264c94ef83989da80a0,
-        type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.ctime1
-      value: 65535
-      objectReference: {fileID: 0}
-    - target: {fileID: 198744463250510744, guid: 948e0bb282bfb264c94ef83989da80a0,
-        type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198744463250510744, guid: 948e0bb282bfb264c94ef83989da80a0,
-        type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.atime0
-      value: 44140
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 948e0bb282bfb264c94ef83989da80a0, type: 3}
 --- !u!1 &818493838
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,8 +243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 381e7c25764a34c1a83f0b70d73217aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseEnemy: {fileID: 8920194588550628738, guid: c566ddf4c51c40445918c67166930456,
-    type: 3}
   bw: {fileID: 1308034230381730, guid: ec3ea9790996b45a0856a96ca710d0d9, type: 3}
   enemyWaves:
   - enemies:
@@ -425,6 +362,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseEnemy: {fileID: 8920194588550628738, guid: c566ddf4c51c40445918c67166930456,
     type: 3}
+  octoOrangeWeapon: {fileID: 1097703502245938, guid: b58d1ef0603b9443eb8dbf6cf9d9226f,
+    type: 3}
+  octoRedWeapon: {fileID: 8015726810868808495, guid: 888bf55c756dcde4eaef3e6cd1d90676,
+    type: 3}
+  orangeWeapon: {fileID: 1432227807114470, guid: b1f05b19914004a1aada35e0bf717b2e,
+    type: 3}
+  randomOrangeWeapon: {fileID: 8087750215977028649, guid: 609b70be4b792304491300baf3a1850c,
+    type: 3}
+  randomRedWeapon: {fileID: 4718999767424299569, guid: 4c0a38579abebc84ca77b3f3ffdd7068,
+    type: 3}
+  redWeapon: {fileID: 1441449692581758, guid: 240503b1408cb443fb5cd4f12e01d578, type: 3}
+  you: {fileID: 7760766567775888718, guid: cea15083ee15acf4a8d49ffd31e90a31, type: 3}
 --- !u!1001 &846094850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -463,6 +412,11 @@ PrefabInstance:
     - target: {fileID: 4991184962476092, guid: b4341e35ec51741f2981e1369a04c0ea, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2118474112249384298, guid: b4341e35ec51741f2981e1369a04c0ea,
+        type: 3}
+      propertyPath: enemyProgress
+      value: 63
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4341e35ec51741f2981e1369a04c0ea, type: 3}
@@ -558,7 +512,7 @@ RectTransform:
   m_Children:
   - {fileID: 1467154469}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -715,7 +669,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6614048859633975791
 PrefabInstance:

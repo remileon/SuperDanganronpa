@@ -1,41 +1,45 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class BaseWeapon : MonoBehaviour
 {
+    private AudioSource audioSource;
     private Transform baseTrans;
-    private AudioSource audio;
+    public GameObject bullet;
+    public float? bulletSpeed;
+    public float delay;
+    public float initRotate;
+    private float nextShoot;
+    public float rotateSpeed;
 
     public float shootInterval = 0.2f;
-    public GameObject bullet;
-    public float rotateSpeed = 0;
-    public float initRotate = 0;
-    private float nextShoot = 0;
+    private bool hasAudio;
+
 
     public void Awake()
     {
         baseTrans = GetComponent<Transform>();
 
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         baseTrans.Rotate(new Vector3(0, 0, initRotate));
-        nextShoot = shootInterval;
     }
 
-    void Update()
+    public void Start()
     {
-        float remainingTime = Time.deltaTime;
+        hasAudio = audioSource != null;
+        nextShoot = delay;
+    }
+
+    private void Update()
+    {
+        var remainingTime = Time.deltaTime;
         while (remainingTime > 0.00001)
         {
             float consumedTime;
             if (nextShoot < remainingTime)
-            {
                 consumedTime = nextShoot;
-            }
             else
-            {
                 consumedTime = remainingTime;
-            }
             // rotate
             baseTrans.Rotate(new Vector3(0, 0, rotateSpeed * consumedTime));
             // prepare shoot
@@ -44,12 +48,10 @@ public abstract class BaseWeapon : MonoBehaviour
             if (nextShoot < 0.00001)
             {
                 Shoot();
-                if (audio != null)
-                {
-                    audio.Play();
-                }
+                if (hasAudio) audioSource.Play();
                 nextShoot = shootInterval;
             }
+
             // consume time
             remainingTime -= consumedTime;
         }
@@ -57,20 +59,30 @@ public abstract class BaseWeapon : MonoBehaviour
 
     public abstract void Shoot();
 
-    public void ModifyAttributes(Dictionary<string, object> dict)
+    protected void BaseModify(GameObject newBullet)
     {
-        if (dict.ContainsKey("shootInterval"))
+        if (bulletSpeed != null)
         {
-            shootInterval = (float)dict["shootInterval"];
-        }
-        if (dict.ContainsKey("rotateSpeed"))
-        {
-            rotateSpeed = (float)dict["rotateSpeed"];
-        }
-        if (dict.ContainsKey("bullet"))
-        {
-            bullet = dict["bullet"] as GameObject;
+            EnemyBullet enemyBullet = newBullet.GetComponent<EnemyBullet>();
+            if (enemyBullet != null)
+            {
+                enemyBullet.speed = bulletSpeed.Value;
+            }
+            Bullet bullet = newBullet.GetComponent<Bullet>();
+            if (bullet != null)
+            {
+                bullet.speed = bulletSpeed.Value;
+            }
         }
     }
-}
 
+    public void ModifyAttributes(Dictionary<string, object> dict)
+    {
+        if (dict.ContainsKey("shootInterval")) shootInterval = (float) dict["shootInterval"];
+        if (dict.ContainsKey("rotateSpeed")) rotateSpeed = (float) dict["rotateSpeed"];
+        if (dict.ContainsKey("bullet")) bullet = dict["bullet"] as GameObject;
+
+        if (dict.ContainsKey("delay")) delay = (float) dict["delay"];
+        if (dict.ContainsKey("bulletSpeed")) bulletSpeed = (float) dict["bulletSpeed"];
+    }
+}

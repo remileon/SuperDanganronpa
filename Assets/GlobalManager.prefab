@@ -175,3 +175,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2229a66153fc9e54aafd67ed0aa597ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDebugging: 1
+  bwLife: 3
+  enemyProgress: 32
+  bwBuffs: 
+  failCount: 0
+  scenario: fail
+  bwDelay: 0.15

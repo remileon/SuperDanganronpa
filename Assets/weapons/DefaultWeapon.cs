@@ -15,5 +15,6 @@ public class DefaultWeapon : BaseWeapon
     public override void Shoot()
     {
         GameObject newBullet = Instantiate(bullet, trans.position + new Vector3(), trans.rotation) as GameObject;
+        BaseModify(newBullet);
     }
 }

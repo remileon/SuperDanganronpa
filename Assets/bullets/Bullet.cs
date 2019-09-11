@@ -5,8 +5,8 @@ public class Bullet : MonoBehaviour {
 
     private Transform trans;
     
-    [SerializeField] private float speed = 5.0f;
-    private float life = 1.5f;
+    public float speed = 5.0f;
+    private float life = 1.3f;
 
     void Awake()
     {

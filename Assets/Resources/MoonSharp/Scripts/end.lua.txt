@@ -1,0 +1,21 @@
+﻿FLAG_FUTURE = 1
+FLAG_HOPE = 2
+FLAG_DESPAIR = 3
+FLAG_NEGATIVE = 4
+
+function main()
+    say("终于，在这边的世界的故事结束了。")
+    say("但是，在你所在的那边的世界里，故事才刚刚开始。")
+    str = "祝你在那边的世界里旅途愉快"
+    if (end_flag == FLAG_FUTURE)
+    {
+        str = str .. "——由你亲手创造的未来。"
+    }
+    say(str)
+    
+    say("")
+    say("")
+    say("")
+end
+
+return main
