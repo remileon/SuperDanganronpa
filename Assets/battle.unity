@@ -416,7 +416,7 @@ PrefabInstance:
     - target: {fileID: -2118474112249384298, guid: b4341e35ec51741f2981e1369a04c0ea,
         type: 3}
       propertyPath: enemyProgress
-      value: 63
+      value: 130
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4341e35ec51741f2981e1369a04c0ea, type: 3}

@@ -75,6 +75,7 @@ public class Avg : MonoBehaviour
         MoonSharpManager.RegisterFunc("Choose", (Action<string, IList<IDictionary>>) Choose);
         MoonSharpManager.RegisterFunc("FailCount", (Func<int>) FailCount);
         MoonSharpManager.RegisterFunc("ResumeBattle", (Action<BwBuff>) ResumeBattle);
+        MoonSharpManager.RegisterFunc("QuitGame", (Action) Application.Quit);
         coroutine = MoonSharpManager.RunCoroutine(GameStatus.Instance.scenario);
         coroutine.Resume();
     }

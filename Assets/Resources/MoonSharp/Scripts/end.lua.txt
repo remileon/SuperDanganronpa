@@ -5,17 +5,25 @@ FLAG_NEGATIVE = 4
 
 function main()
     say("终于，在这边的世界的故事结束了。")
-    say("但是，在你所在的那边的世界里，故事才刚刚开始。")
-    str = "祝你在那边的世界里旅途愉快"
-    if (end_flag == FLAG_FUTURE)
-    {
-        str = str .. "——由你亲手创造的未来。"
-    }
+    say("但是，在“那边的世界”里，“你”的故事仍在继续。")
+    str = "最后，祝你在那边的世界里创造一个好的故事。"
+    if end_flag == FLAG_FUTURE then
+        str = str .. "......——一个由你亲手创造「未来」的故事。"
+    elseif end_flag == FLAG_HOPE then
+        str = str .. "......——将「希望」传染下去吧。"
+    elseif end_flag == FLAG_DESPAIR then
+        str = str .. "......——与「绝望」好好相处吧。"
+    elseif end_flag == FLAG_NEGATIVE then
+        str = str .. "......——在没有弹丸论破的世界里。"
+    end
     say(str)
-    
-    say("")
-    say("")
-    say("")
+    if end_flag == FLAG_NEGATIVE then
+        say("Thank you for (not) playing. 退出游戏？")
+        choose("Thank you for (not) playing. 退出游戏？", {{info="是", action=QuitGame}})
+    else
+        say("Thank you for playing. 退出游戏？")
+        choose("Thank you for playing. 退出游戏？", {{info="是", action=QuitGame}})
+    end
 end
 
 return main

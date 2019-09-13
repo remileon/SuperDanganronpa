@@ -34,7 +34,7 @@ namespace DefaultNamespace
             };
         }
 
-        public List<Vector3[]> random(int count = 6, float bound = 0.5f)
+        public List<Vector3[]> random(int count = 4, float bound = 0.5f)
         {
             var randomVector3 = new RandomVector3();
             var list = new List<Vector3[]>();

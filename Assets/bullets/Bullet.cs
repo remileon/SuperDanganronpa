@@ -33,5 +33,10 @@ public class Bullet : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+
+        if (trans.position.y >= 4.29f)
+        {
+	        Destroy(gameObject);
+        }
 	}
 }
