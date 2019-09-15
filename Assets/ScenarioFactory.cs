@@ -22,6 +22,7 @@ public class ScenarioFactory : MonoBehaviour
     private static readonly Vector2 InPos1 = new Vector2(0f, 0f);
     private readonly BezierCurves bc = new BezierCurves();
     [SerializeField] private GameObject baseEnemy;
+    [SerializeField] private GameObject baseEnemy2;
     [SerializeField] private GameObject octoOrangeWeapon;
     [SerializeField] private GameObject octoRedWeapon;
     [SerializeField] private GameObject orangeWeapon;
@@ -104,7 +105,8 @@ public class ScenarioFactory : MonoBehaviour
             var angle2 = Math.Atan2(x, y);
             var speed = 2;
 //            Debug.Log("rotate: " + angle / Math.PI * 180 + ", speed: " + (float) Math.Sqrt(x*x+y*y));
-            nanamiBuilder.weapon(orangeWeapon, 2f, default, default, new Vector3(0, 0, (float) (angle2 / Math.PI * 180)), default, (float) Math.Sqrt(x*x+y*y) * speed);
+            nanamiBuilder.weapon(orangeWeapon, 2f, default, default,
+                new Vector3(0, 0, (float) (angle2 / Math.PI * 180)), default, (float) Math.Sqrt(x * x + y * y) * speed);
         }
 
         scenario
@@ -186,7 +188,7 @@ public class ScenarioFactory : MonoBehaviour
                 .weapon(randomRedWeapon, 3.5f, 0.6f)
             )
             .WaitForAllEnemyDestroyed();
-        
+
         //
         scenario
             .Checkpoint()
@@ -213,7 +215,7 @@ public class ScenarioFactory : MonoBehaviour
                 .weapon(octoRedWeapon, 2f)
             )
             .WaitForAllEnemyDestroyed();
-        
+
         //
         scenario
             .Checkpoint()
@@ -412,7 +414,7 @@ public class ScenarioFactory : MonoBehaviour
                     bc.arc(-4, 0, 4),
                     bc.arc(4, 0, 4),
                     bc.arc(-4, 0, 4)
-                    ))
+                ))
                 .weapon(octoOrangeWeapon, 1.6f)
             )
             .WaitForSeconds(1)
@@ -601,6 +603,7 @@ public class ScenarioFactory : MonoBehaviour
                     .weapon(randomOrangeWeapon, 2f)
                 );
         }
+
         scenario.WaitForAllEnemyDestroyed();
         // 剧本协力：莫良 知名不具的非著名社畜 小德 青石木 柿子
         scenario
@@ -630,6 +633,7 @@ public class ScenarioFactory : MonoBehaviour
                     .weapon(randomOrangeWeapon, 2f)
                 );
         }
+
         scenario
             .WaitForAllEnemyDestroyed();
         // 音频监督：再熊 奇异
@@ -763,6 +767,270 @@ public class ScenarioFactory : MonoBehaviour
                 .cubicPath(bc.line(-2, 0))
             )
             .WaitForAllEnemyDestroyed();
+        // 舞美监督：腺嘧啶 磷酸钙 蛋勒
+        scenario
+            .Checkpoint()
+            .Spawn(enemy("舞美监督")
+                .fontSize(5f)
+                .initPos(9, -0.5f)
+                .activePos(5, -0.5f)
+                .exitPos(-9, -0.5f)
+                .cubicPath(bc.line(-3, 0))
+                .activeTime(5.5f)
+            )
+            .Spawn(enemy2("腺嘧啶")
+                .fontSize(3)
+                .activePos(8.5f, 0)
+                .gravity(-0.6f)
+                .initSpeed(-4 , 2)
+                .k(0.08f)
+                .weapon(randomOrangeWeapon, 2f)
+            )
+            .Spawn(enemy2("磷酸钙")
+                .fontSize(3)
+                .activePos(8.5f, 0)
+                .gravity(-0.1f)
+                .initSpeed(-6.5f , 0.5f)
+                .k(0.06f)
+                .weapon(randomOrangeWeapon, 2f)
+            )
+            .Spawn(enemy2("蛋勒")
+                .fontSize(3)
+                .activePos(8.5f, 0)
+                .gravity(-1)
+                .initSpeed(-6 , 3)
+                .k(0.1f)
+                .weapon(randomOrangeWeapon, 2f)
+            )
+            .WaitForAllEnemyDestroyed();
+//        化妆：磷酸钙 萌汐 鬼裔 小月 咩咩 风筝 莫良 罐头 柿子
+        scenario
+            .Checkpoint()
+            .Spawn(enemy("化妆")
+                .fontSize(5f)
+                .initPos(-9, -0.5f)
+                .activePos(-4, -0.5f)
+                .exitPos(9, -0.5f)
+                .cubicPath(bc.line(3, 0))
+                .activeTime(5.5f)
+            )
+            .Spawn(enemy2("磷酸钙")
+                .fontSize(3)
+                .activePos(-8.5f, 0)
+                .gravity(-0.6f)
+                .initSpeed(4 , 2)
+                .k(0.08f)
+                .weapon(randomOrangeWeapon, 2f)
+            )
+            .Spawn(enemy2("萌汐")
+                .fontSize(3)
+                .activePos(-8.5f, 0)
+                .gravity(-0.1f)
+                .initSpeed(6.5f , 0.5f)
+                .k(0.06f)
+                .weapon(randomOrangeWeapon, 2f)
+            )
+            .Spawn(enemy2("鬼裔")
+                .fontSize(3)
+                .activePos(-8.5f, 0)
+                .gravity(-1)
+                .initSpeed(6 , 3)
+                .k(0.1f)
+                .weapon(randomOrangeWeapon, 2f)
+            )
+            .Spawn(enemy2("小月")
+                .fontSize(3)
+                .activePos(-8.5f, 0)
+                .gravity(-0.08f)
+                .initSpeed(4, 0.5f)
+                .k(0.05f)
+                .weapon(randomOrangeWeapon, 2f)
+            )
+            .Spawn(enemy2("咩咩")
+                .fontSize(3)
+                .activePos(-8.5f, 0)
+                .gravity(0)
+                .initSpeed(6 , 0.2f)
+                .k(0.1f)
+                .weapon(randomOrangeWeapon, 2f)
+            )
+            .Spawn(enemy2("风筝")
+                .fontSize(3)
+                .activePos(-8.5f, 0)
+                .gravity(-0.2f)
+                .initSpeed(6 , 0)
+                .k(0.15f)
+                .weapon(randomOrangeWeapon, 2f)
+            )
+            .Spawn(enemy2("莫良")
+                .fontSize(3)
+                .activePos(-8.5f, 0)
+                .gravity(-0.8f)
+                .initSpeed(8, 2.5f)
+                .k(0.1f)
+                .weapon(randomOrangeWeapon, 2f)
+            )
+            .Spawn(enemy2("罐头")
+                .fontSize(3)
+                .activePos(-8.5f, 0)
+                .gravity(-0.5f)
+                .initSpeed(3 , 1)
+                .k(0.1f)
+                .weapon(randomOrangeWeapon, 2f)
+            )
+            .Spawn(enemy2("柿子")
+                .fontSize(3)
+                .activePos(-8.5f, 0)
+                .gravity(-1)
+                .initSpeed(3.5f, 3)
+                .k(0.1f)
+                .weapon(randomOrangeWeapon, 2f)
+            )
+            .WaitForAllEnemyDestroyed();
+//            灯光：夜宵 雷精 小海 
+        scenario.Checkpoint()
+            .Spawn(enemy("灯光")
+                .fontSize(5)
+                .initPos(-9, 2)
+                .activePos(-4, 2)
+                .exitPos(9, 2)
+                .cubicPath(bc.line(8, 0))
+                .weapon(octoRedWeapon, 1.5f, 0, 10f)
+            )
+            .WaitForSeconds(1)
+            .Spawn(enemy("夜宵")
+                .fontSize(3)
+                .initPos(-9, 2)
+                .activePos(-4, 2)
+                .exitPos(9, 2)
+                .cubicPath(bc.line(8, 0))
+                .weapon(randomOrangeWeapon, 0.8f)
+            )
+            .WaitForSeconds(1)
+            .Spawn(enemy("雷精")
+                .fontSize(3)
+                .initPos(-9, 2)
+                .activePos(-4, 2)
+                .exitPos(9, 2)
+                .cubicPath(bc.line(8, 0))
+                .weapon(randomOrangeWeapon, 0.8f)
+            )
+            .WaitForSeconds(1)
+            .Spawn(enemy("小海")
+                .fontSize(3)
+                .initPos(-9, 2)
+                .activePos(-4, 2)
+                .exitPos(9, 2)
+                .cubicPath(bc.line(8, 0))
+                .weapon(randomOrangeWeapon, 0.8f)
+            )
+            .WaitForSeconds(1);
+//            道具：兄贵 奇异 萌汐 绯红
+        scenario
+            .Spawn(enemy("道具")
+                .fontSize(5)
+                .initPos(9, 1.2f)
+                .activePos(4, 1.2f)
+                .exitPos(-9, 1.2f)
+                .cubicPath(bc.line(-8, 0))
+                .weapon(octoRedWeapon, 1.5f, 0, 10f)
+            )
+            .WaitForSeconds(1)
+            .Spawn(enemy("兄贵")
+                .fontSize(3)
+                .initPos(9, 1.2f)
+                .activePos(4, 1.2f)
+                .exitPos(-9, 1.2f)
+                .cubicPath(bc.line(-8, 0))
+                .weapon(randomOrangeWeapon, 0.8f)
+            )
+            .WaitForSeconds(1)
+            .Spawn(enemy("奇异")
+                .fontSize(3)
+                .initPos(9, 1.2f)
+                .activePos(4, 1.2f)
+                .exitPos(-9, 1.2f)
+                .cubicPath(bc.line(-8, 0))
+                .weapon(randomOrangeWeapon, 0.8f)
+            )
+            .WaitForSeconds(1)
+            .Spawn(enemy("萌汐")
+                .fontSize(3)
+                .initPos(9, 1.2f)
+                .activePos(4, 1.2f)
+                .exitPos(-9, 1.2f)
+                .cubicPath(bc.line(-8, 0))
+                .weapon(randomOrangeWeapon, 0.8f)
+            )
+            .WaitForSeconds(1)
+            .Spawn(enemy("绯红")
+                .fontSize(3)
+                .initPos(9, 1.2f)
+                .activePos(4, 1.2f)
+                .exitPos(-9, 1.2f)
+                .cubicPath(bc.line(-8, 0))
+                .weapon(randomOrangeWeapon, 0.8f)
+            )
+            .WaitForSeconds(1);
+//        舞台后勤：聊无 lickey 木木
+        scenario
+            .Spawn(enemy("舞台后勤")
+                .fontSize(5)
+                .initPos(-9, 0.4f)
+                .activePos(-4, 0.4f)
+                .exitPos(9, 0.4f)
+                .cubicPath(bc.line(8, 0))
+                .weapon(octoRedWeapon, 1.5f, 0, 10f)
+            )
+            .WaitForSeconds(1)
+            .Spawn(enemy("聊无")
+                .fontSize(3)
+                .initPos(-9, 0.4f)
+                .activePos(-4, 0.4f)
+                .exitPos(9, 0.4f)
+                .cubicPath(bc.line(8, 0))
+                .weapon(randomOrangeWeapon, 0.8f)
+            )
+            .WaitForSeconds(1)
+            .Spawn(enemy("lickey")
+                .fontSize(3)
+                .initPos(-9, 0.4f)
+                .activePos(-4, 0.4f)
+                .exitPos(9, 0.4f)
+                .cubicPath(bc.line(8, 0))
+                .weapon(randomOrangeWeapon, 0.8f)
+            )
+            .WaitForSeconds(1)
+            .Spawn(enemy("木木")
+                .fontSize(3)
+                .initPos(-9, 0.4f)
+                .activePos(-4, 0.4f)
+                .exitPos(9, 0.4f)
+                .cubicPath(bc.line(8, 0))
+                .weapon(randomOrangeWeapon, 0.8f)
+            )
+            .WaitForSeconds(1);
+//            摄像提供：itachi
+        scenario
+            .Spawn(enemy("摄像提供")
+                .fontSize(5)
+                .initPos(9, -0.4f)
+                .activePos(4, -0.4f)
+                .exitPos(-9, -0.4f)
+                .cubicPath(bc.line(-8, 0))
+                .weapon(octoRedWeapon, 1.5f, 0, 10f)
+            )
+            .WaitForSeconds(1)
+            .Spawn(enemy("itachi")
+                .fontSize(3)
+                .initPos(9, -0.4f)
+                .activePos(4, -0.4f)
+                .exitPos(-9, -0.4f)
+                .cubicPath(bc.line(-8, 0))
+                .weapon(randomOrangeWeapon, 0.8f)
+            );
+
+        scenario.WaitForAllEnemyDestroyed();
         //
         scenario.Checkpoint()
             .Spawn(enemy("特别鸣谢")
@@ -790,6 +1058,11 @@ public class ScenarioFactory : MonoBehaviour
         return new EnemyBuilder(you, "YOU");
     }
 
+    private EnemyBuilder enemy2(string text)
+    {
+        return new EnemyBuilder(baseEnemy2, text);
+    }
+
     public class EnemyBuilder
     {
         private readonly GameObject baseEnemy;
@@ -800,9 +1073,14 @@ public class ScenarioFactory : MonoBehaviour
         [CanBeNull] private List<Vector3[]> _cubicPath;
         private Vector2? _exitPos;
         private float? _fontSize;
+
+        private float? _gravity;
         private Vector2? _initPos;
+        public Vector3? _initSpeed;
         private float? _initTime;
+        public float? _k;
         private int? _life;
+        private Vector3? _speed;
 
         public EnemyBuilder(GameObject baseEnemy, string text)
         {
@@ -817,19 +1095,30 @@ public class ScenarioFactory : MonoBehaviour
             tmp.text = text;
             if (_fontSize.HasValue) tmp.fontSize = _fontSize.Value;
             var enemyMove = enemy.GetComponent<EnemyMove>();
-            if (_initPos.HasValue) enemyMove.initPos = new Vector3(_initPos.Value.x, _initPos.Value.y, 0f);
-            if (_initTime.HasValue) enemyMove.initTime = _initTime.Value;
-            if (_activePos.HasValue) enemyMove.activePos = new Vector3(_activePos.Value.x, _activePos.Value.y, 0f);
-            if (_exitPos.HasValue) enemyMove.exitPos = new Vector3(_exitPos.Value.x, _exitPos.Value.y, 0f);
-            if (_cubicPath != null) enemyMove.SetCubicPath(_cubicPath);
-            if (_activeTime.HasValue) enemyMove.activeTime = _activeTime.Value;
-            if (_life.HasValue) enemy.GetComponent<DestroyOnCollision>().life = _life.Value;
             var attachWeapons = enemy.GetComponent<AttachWeapons>();
-            attachWeapons.delay = enemyMove.initTime;
-            if (weaponSlots.Count > 0)
+            if (enemyMove != null)
             {
-                attachWeapons.weaponSlots = weaponSlots.ToArray();
+                if (_initPos.HasValue) enemyMove.initPos = new Vector3(_initPos.Value.x, _initPos.Value.y, 0f);
+                if (_initTime.HasValue) enemyMove.initTime = _initTime.Value;
+                if (_activePos.HasValue) enemyMove.activePos = new Vector3(_activePos.Value.x, _activePos.Value.y, 0f);
+                if (_exitPos.HasValue) enemyMove.exitPos = new Vector3(_exitPos.Value.x, _exitPos.Value.y, 0f);
+                if (_cubicPath != null) enemyMove.SetCubicPath(_cubicPath);
+                if (_activeTime.HasValue) enemyMove.activeTime = _activeTime.Value;
+
+                attachWeapons.delay = enemyMove.initTime;
             }
+
+            var enemyMove2 = enemy.GetComponent<EnemyMove2>();
+            if (enemyMove2 != null)
+            {
+                if (_activePos.HasValue) enemy.transform.position = new Vector3(_activePos.Value.x, _activePos.Value.y);
+                if (_gravity.HasValue) enemyMove2.gravity = _gravity.Value;
+                if (_initSpeed.HasValue) enemyMove2.initSpeed = _initSpeed.Value;
+                if (_k.HasValue) enemyMove2.k = _k.Value;
+            }
+
+            if (_life.HasValue) enemy.GetComponent<DestroyOnCollision>().life = _life.Value;
+            if (weaponSlots.Count > 0) attachWeapons.weaponSlots = weaponSlots.ToArray();
             return enemy;
         }
 
@@ -899,6 +1188,24 @@ public class ScenarioFactory : MonoBehaviour
             return this;
         }
 
+        public EnemyBuilder gravity(float gravity)
+        {
+            _gravity = gravity;
+            return this;
+        }
+
+        public EnemyBuilder initSpeed(float x, float y)
+        {
+            _initSpeed = new Vector3(x, y, 0);
+            return this;
+        }
+
+        public EnemyBuilder k(float k)
+        {
+            _k = k;
+            return this;
+        }
+
         public EnemyBuilder weapon(GameObject weapon, float interval = 0.1f, float delay = 0f, float rotateSpeed = 0,
             Vector3? rotate = null, Vector3? position = null, float? bulletSpeed = null)
         {
@@ -910,47 +1217,47 @@ public class ScenarioFactory : MonoBehaviour
             weaponSlot.delay = delay.ToString();
             weaponSlot.shootInterval = interval.ToString();
             weaponSlot.position = position.GetValueOrDefault(new Vector3(0, 0, 0));
-            if (bulletSpeed != null) {
-//                Debug.Log("bulletSpeed:" + bulletSpeed.Value);
+            if (bulletSpeed != null) //                Debug.Log("bulletSpeed:" + bulletSpeed.Value);
                 weaponSlot.bulletSpeed = bulletSpeed.Value.ToString();
-            }
             weaponSlots.Add(weaponSlot);
             return this;
         }
 
-        public EnemyBuilder weaponSquare(GameObject weapon, float width, float height, float interval = 0.1f, float delay = 0f, float rotateSpeed = 0,
+        public EnemyBuilder weaponSquare(GameObject weapon, float width, float height, float interval = 0.1f,
+            float delay = 0f, float rotateSpeed = 0,
             Vector3? rotate = null, Vector3? position = null)
         {
-            int xCount = 5;
-            int yCount = 3;
-            for (int xIdx = 0; xIdx < xCount; ++xIdx)
-            for (int yIdx = 0; yIdx < yCount; ++yIdx)
+            var xCount = 5;
+            var yCount = 3;
+            for (var xIdx = 0; xIdx < xCount; ++xIdx)
+            for (var yIdx = 0; yIdx < yCount; ++yIdx)
             {
-                if (xIdx > 0 && xIdx < xCount - 1 && yIdx > 0 && yIdx < yCount - 1)
-                {
-                    continue;
-                }
+                if (xIdx > 0 && xIdx < xCount - 1 && yIdx > 0 && yIdx < yCount - 1) continue;
 
                 var x = width / (xCount - 1) * xIdx - width / 2;
                 var y = height / (yCount - 1) * yIdx - height / 2;
                 var angle2 = Math.Atan2(x, y);
-                this.weapon(weapon, interval, delay, rotateSpeed, new Vector3(0, 0, (float) (angle2 / Math.PI * 180)), position, (float) Math.Sqrt(x*x+y*y));
+                this.weapon(weapon, interval, delay, rotateSpeed, new Vector3(0, 0, (float) (angle2 / Math.PI * 180)),
+                    position, (float) Math.Sqrt(x * x + y * y));
             }
+
             return this;
         }
 
-        public EnemyBuilder weaponSector(GameObject weapon, float interval = 2f, float rotateSpeed = 120f, float initRotate = 0f, float angle = 120f, int arcCount = 8, int radiusCount = 5)
+        public EnemyBuilder weaponSector(GameObject weapon, float interval = 2f, float rotateSpeed = 120f,
+            float initRotate = 0f, float angle = 120f, int arcCount = 8, int radiusCount = 5)
         {
-            for (int i = 0; i < arcCount; ++i)
-            {
-                this.weapon(weapon, interval, default, rotateSpeed, new Vector3(0, 0, initRotate + angle / (arcCount - 1) * i), default);
-            }
+            for (var i = 0; i < arcCount; ++i)
+                this.weapon(weapon, interval, default, rotateSpeed,
+                    new Vector3(0, 0, initRotate + angle / (arcCount - 1) * i), default);
 
-            for (int i = 0; i < radiusCount - 1; ++i)
+            for (var i = 0; i < radiusCount - 1; ++i)
             {
                 var delay = interval * 0.5f / (radiusCount - 1) * (i + 1);
-                this.weapon(weapon, interval, delay, rotateSpeed, new Vector3(0, 0,  initRotate - rotateSpeed * delay), default);
-                this.weapon(weapon, interval, delay, rotateSpeed, new Vector3(0, 0,  initRotate + angle - rotateSpeed * delay), default);
+                this.weapon(weapon, interval, delay, rotateSpeed, new Vector3(0, 0, initRotate - rotateSpeed * delay),
+                    default);
+                this.weapon(weapon, interval, delay, rotateSpeed,
+                    new Vector3(0, 0, initRotate + angle - rotateSpeed * delay), default);
             }
 
             return this;
@@ -959,32 +1266,30 @@ public class ScenarioFactory : MonoBehaviour
         public EnemyBuilder weaponLine(GameObject weapon, float interval = 2f, int count = 10, float fromX = -4,
             float fromY = -2, float toX = 4, float toY = -4, float rotateSpeed = 0f)
         {
-            for (int i = 0; i < count; ++i)
+            for (var i = 0; i < count; ++i)
             {
                 var x = fromX + (toX - fromX) * ((float) i / (count - 1));
                 var y = fromY + (toY - fromY) * ((float) i / (count - 1));
                 var angle = Math.Atan2(x, y);
-                this.weapon(weapon, interval, 0f, rotateSpeed, new Vector3(0, 0, (float) (angle / Math.PI * 180)), default, (float) Math.Sqrt(x*x+y*y));
+                this.weapon(weapon, interval, 0f, rotateSpeed, new Vector3(0, 0, (float) (angle / Math.PI * 180)),
+                    default, (float) Math.Sqrt(x * x + y * y));
             }
+
             return this;
         }
 
         public EnemyBuilder weaponBursts(GameObject weapon)
         {
-            float angleInterval = 30f;
-            int bulletCount = 4;
-            float burstsDelay = 0.16f;
-            float bulletDelay = 0.12f;
-            int burstCount = (int) (400 / angleInterval);
-            float initRotate = -135f;
-            for (int i = 0; i < burstCount; ++i)
-            {
-                for (int j = 0; j < bulletCount; ++j)
-                {
-                    this.weapon(weapon, 100f, i * burstsDelay + j * bulletDelay, 0f,
-                        new Vector3(0, 0, initRotate - i * angleInterval), default, 3.6f);
-                }
-            }
+            var angleInterval = 30f;
+            var bulletCount = 4;
+            var burstsDelay = 0.16f;
+            var bulletDelay = 0.12f;
+            var burstCount = (int) (400 / angleInterval);
+            var initRotate = -135f;
+            for (var i = 0; i < burstCount; ++i)
+            for (var j = 0; j < bulletCount; ++j)
+                this.weapon(weapon, 100f, i * burstsDelay + j * bulletDelay, 0f,
+                    new Vector3(0, 0, initRotate - i * angleInterval), default, 3.6f);
 
             return this;
         }
@@ -994,7 +1299,7 @@ public class ScenarioFactory : MonoBehaviour
             var angleInterval = 360f / 5;
             var longDistance = 6f;
             var shortDistance = 3f;
-            for (int i = 0; i < 5; ++i)
+            for (var i = 0; i < 5; ++i)
             {
                 var angle1 = angleInterval * i;
                 var angle2 = angle1 - angleInterval / 2;
@@ -1006,9 +1311,8 @@ public class ScenarioFactory : MonoBehaviour
                 var x3 = (float) Math.Cos(angle3 / 180 * Math.PI) * shortDistance;
                 var y3 = (float) Math.Sin(angle3 / 180 * Math.PI) * shortDistance;
 
-                this.weaponLine(weapon, interval, 5, x1, y1, x2, y2, rotateSpeed);
-                this.weaponLine(weapon, interval, 5, x1, y1, x3, y3, rotateSpeed);
-                
+                weaponLine(weapon, interval, 5, x1, y1, x2, y2, rotateSpeed);
+                weaponLine(weapon, interval, 5, x1, y1, x3, y3, rotateSpeed);
             }
 
             return this;

@@ -1,21 +1,26 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ShowText : MonoBehaviour
 {
+    public const int AUDIO_TYPE_TYPE = 0;
+    public const int AUDIO_TYPE_SAY = 1;
+    
     private string text = "";
     private Text textComponent;
     private double textSpeed;
     private Action textFinishCallback;
 
     private double textTime;
-    private AudioSource audioSource;
+    public AudioSource typeAudio;
+    public AudioSource sayAudio;
+    private int audioType;
 
     private void Awake()
     {
         textComponent = GetComponent<Text>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -30,12 +35,13 @@ public class ShowText : MonoBehaviour
         UpdateText();
     }
 
-    public void Show(string text, double speed = 10.0f, Action finishCallback = null)
+    public void Show(string text, double speed = 10.0f, Action finishCallback = null, int audioType = AUDIO_TYPE_TYPE)
     {
         this.text = text;
         textTime = 0;
         textSpeed = speed;
         textFinishCallback = finishCallback;
+        this.audioType = audioType;
         UpdateText();
     }
 
@@ -49,7 +55,9 @@ public class ShowText : MonoBehaviour
         var newText = text.Substring(0, Math.Min(cur, text.Length));
         if (textComponent.text.Length < newText.Length)
         {
-            if (!audioSource.isPlaying || audioSource.time > 0.05)
+            var dText = newText.Substring(textComponent.text.Length);
+            AudioSource audioSource = audioType == AUDIO_TYPE_SAY ? sayAudio : typeAudio;
+            if (dText.Trim().Length > 0 && (!audioSource.isPlaying || audioSource.time > 0.05))
             {
                 audioSource.Play();
             }

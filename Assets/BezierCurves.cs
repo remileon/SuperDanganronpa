@@ -66,6 +66,19 @@ namespace DefaultNamespace
             return result;
         }
 
+        public List<Vector3[]> sing(Vector3 a, Vector3 b, Vector3 c)
+        {
+            return new List<Vector3[]>
+            {
+                new[]
+                {
+                    a,
+                    b,
+                    c
+                }
+            };
+        }
+
         private class RandomVector3
         {
             private Vector3 last = new Vector3(0, 0, 0);

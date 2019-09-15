@@ -1,5 +1,10 @@
 ﻿function say(str, speed, auto)
-    Say(str, speed, auto)
+    Say(str, speed, auto, 1)
+    coroutine.yield()
+end
+
+function type(str, speed, auto)
+    Say(str, speed, auto, 0)
     coroutine.yield()
 end
 

@@ -21,13 +21,13 @@ public class Avg : MonoBehaviour
     /**
      * speed: char per second
      */
-    private void Say(string sth, double speed = 10.0f, bool auto = false)
+    private void Say(string sth, double speed = 10.0f, bool auto = false, int audioType = ShowText.AUDIO_TYPE_SAY)
     {
         textAuto = auto;
         textField.GetComponent<ShowText>().Show(sth, speed, () =>
         {
             if (textAuto) coroutine.Resume();
-        });
+        }, audioType);
         isOption = false;
     }
 
@@ -71,12 +71,18 @@ public class Avg : MonoBehaviour
     private void Start()
     {
         
-        MoonSharpManager.RegisterFunc("Say", (Action<string, double, bool>) Say);
+        MoonSharpManager.RegisterFunc("Say", (Action<string, double, bool, int>) Say);
         MoonSharpManager.RegisterFunc("Choose", (Action<string, IList<IDictionary>>) Choose);
         MoonSharpManager.RegisterFunc("FailCount", (Func<int>) FailCount);
         MoonSharpManager.RegisterFunc("ResumeBattle", (Action<BwBuff>) ResumeBattle);
         MoonSharpManager.RegisterFunc("QuitGame", (Action) Application.Quit);
         coroutine = MoonSharpManager.RunCoroutine(GameStatus.Instance.scenario);
+        
+        Invoke(nameof(StartAvg), 1);
+    }
+
+    public void StartAvg()
+    {
         coroutine.Resume();
     }
 

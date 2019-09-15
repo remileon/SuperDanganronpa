@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/battle.unity
     guid: 612f348347dbe4a82a7ceed2c8712067
   - enabled: 1
-    path: Assets/avg/avg.unity
+    path: Assets/avg.unity
     guid: 894f49cc9b37d9e4a83f21ed7b00e9dd
   m_configObjects: {}

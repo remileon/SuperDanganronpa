@@ -37,7 +37,7 @@ public class Director : MonoBehaviour
         gameStatus.bwLife = bwBuffs.Contains(BwBuff.Hope) ? 15 : 3;
         if (gameStatus.isDebugging)
         {
-            gameStatus.bwLife = 30;
+            gameStatus.bwLife = 1;
         }
         // despair
         if (bwBuffs.Contains(BwBuff.Despair))

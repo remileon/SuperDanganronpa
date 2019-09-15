@@ -117,7 +117,7 @@ public class Bw : MonoBehaviour
             ++gameStatus.failCount;
             gameStatus.scenario = "fail";
             director.Cut();
-            SceneManager.LoadScene("avg/avg", LoadSceneMode.Single);
+            SceneFader.Instance.FadeToAvg();
         }
     }
 }

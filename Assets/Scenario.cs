@@ -66,7 +66,7 @@ public class Scenario
         actions.Add(async () =>
         {
             GameStatus.Instance.scenario = "end";
-            SceneManager.LoadScene("avg/avg");
+            SceneFader.Instance.FadeToAvg();
         });
         return this;
     }
