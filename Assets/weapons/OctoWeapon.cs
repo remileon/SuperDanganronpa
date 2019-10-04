@@ -12,7 +12,7 @@ public class OctoWeapon : BaseWeapon
         trans = GetComponent<Transform>();
     }
 
-    public override void Shoot()
+    public override bool Shoot()
     {
         for (int i = 0; i < 8; ++i)
         {
@@ -20,5 +20,7 @@ public class OctoWeapon : BaseWeapon
             newBullet.transform.Rotate(new Vector3(0, 0, 45 * i));
             BaseModify(newBullet);
         }
+
+        return true;
     }
 }

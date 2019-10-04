@@ -1,52 +1,36 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class OptionGroup : MonoBehaviour
 {
+    private int currentIdx;
     public GameObject optionPrefab;
-
-    private Action<int> callback;
     private List<GameObject> options = new List<GameObject>();
     private List<Option> optionScripts = new List<Option>();
-    private int currentIdx;
-    
+    public float protectTime { get; private set; } = 0f; 
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (options.Count <= 0)
+        protectTime -= Time.deltaTime;
+        if (options.Count <= 0) return;
+        var oldCurrentIdx = currentIdx;
+        var moveAction = InputController.Instance.moveAction;
+        if (moveAction.triggered)
         {
-            return;
-        }
-        int oldCurrentIdx = currentIdx;
-        var keyConfig = KeyConfig.Instance;
-        foreach (var keyCode in keyConfig.avgDown)
-        {
-            if (Input.GetKeyDown(keyCode))
-            {
+            if (moveAction.ReadValue<Vector2>().y < -0.5f)
                 if (currentIdx < options.Count - 1)
-                {
                     ++currentIdx;
-                }
-            }   
-        }
-        foreach (var keyCode in keyConfig.avgUp)
-        {
-            if (Input.GetKeyDown(keyCode))
-            {
+
+            if (moveAction.ReadValue<Vector2>().y > 0.5f)
                 if (currentIdx > 0)
-                { 
                     --currentIdx;
-                }
-            }
         }
 
         if (oldCurrentIdx != currentIdx)
@@ -54,44 +38,30 @@ public class OptionGroup : MonoBehaviour
             optionScripts[oldCurrentIdx].SetHovered(false);
             optionScripts[currentIdx].SetHovered(true);
         }
-        
-        foreach (var keyCode in keyConfig.avgConfirm)
-        {
-            if (Input.GetKeyDown(keyCode))
-            {
-                callback.Invoke(currentIdx);
-            }
-        }
     }
 
-    public void InitOptions(List<string> infos, Action<int> callback)
+    public void InitOptions(List<string> infos)
     {
-        if (infos.Count <= 0)
-        {
-            return;
-        }
+        if (infos.Count <= 0) return;
         options = new List<GameObject>();
         optionScripts = new List<Option>();
         foreach (var info in infos)
         {
             var optionGameObject = Instantiate(optionPrefab, gameObject.transform, false);
             optionGameObject.GetComponentInChildren<TextMeshProUGUI>().text = info;
-            
+
             options.Add(optionGameObject);
             optionScripts.Add(optionGameObject.GetComponent<Option>());
         }
 
-        this.currentIdx = 0;
-        this.callback = callback;
+        currentIdx = 0;
         optionScripts[currentIdx].SetHovered(true);
+        protectTime = 0.5f;
     }
 
     public void ClearOptions()
     {
-        foreach (var option in options)
-        {
-            GameObject.Destroy(option);
-        }
+        foreach (var option in options) Destroy(option);
 
         options = new List<GameObject>();
         optionScripts = new List<Option>();

@@ -15,23 +15,25 @@ function main()
     --say("哎呀哎呀笑死人了那种样子还叫”大哥哥”啊对啊带面具看不到脸啊而且还是兔子面具真是杰作不过啊不这样做的话电视会坏掉的真是的在你旁边做体操的小孩子才丢脸真的", 50, true)
     --choose("let's choose", {{info="a", action=a}, {info="b", action=b}})
     
-    type(os.date("%m月%d日 %H时%M分") .. "\n弹丸论破舞台 黑幕第3休息室", 5)
-    
+    hideImg()
+    type(os.date("%m月 %d日  %H时 %M分") .. "\n弹丸论破舞台 黑幕第3休息室", 6)
     
     if FailCount() <= 3 then
-        say("绝望啦，对这个明明是个黑幕却连个正脸都露不了的世界绝望啦！", 30)
-        say("唔噗噗...绝望的滋味真是美妙...", 30)
+        showImg(0, 0.4)
+        say("绝望啦，对这个明明是个黑幕却连个正脸都露不了的世界绝望啦！", 18)
+        say("唔噗噗...绝望的滋味真是美妙...", 20)
         if FailCount() <= 1 then
-            say("什么，「明明只是看个舞台剧ed却还要被迫玩射击游戏的我也很绝望呀」？")
+            say("什么，「明明只是看个舞台剧ed却还要被迫玩射击游戏的我也很绝望呀」？", 18)
         elseif FailCount() <= 2 then
-            say("什么，「都9102年了居然还蹦出来一个鸽了这么久发生过什么都不记得了的坑我也很绝望呀」？")
+            say("什么，「都9102年了居然还蹦出来一个鸽了这么久发生过什么都不记得了的坑我也很绝望呀」？", 18)
         elseif FailCount() <= 3 then
-            say("什么，「玩射击游戏就算了居然还是个连难度都不能调整的垃圾游戏让我连死那么多次我也很绝望呀」？")
+            say("什么，「玩射击游戏就算了居然还是个连难度都不能调整的垃圾游戏让我连死那么多次我也很绝望呀」？", 18)
         end
-        say("看来你也明白绝望的美妙嘛...就让盾子姐姐给这样的你特·别·服·务吧。")
+        say("看来你也明白绝望的美妙嘛...就让盾子姐姐给这样的你特·别·服·务吧。", 18)
         type("你获得了「人生重来枪」。")
         type("你获得了言弹「希望」。")
-        type("你获得了言弹「绝望」。")                
+        type("你获得了言弹「绝望」。")   
+        hideImg()             
     end
     choose("你要怎么做？", {
          {info="当然是选择「希望」！", action=chooseHope},
@@ -41,19 +43,36 @@ function main()
 end
 
 function chooseHope()
-    
+    type("将言弹「希望」装入了「人生重来枪」。")
+    say("再见，我去" .. dimensionStr() .. "次元了！")
     ResumeBattle(HOPE)
 end
 
 function chooseDespair()
+    type("将言弹「绝望」装入了「人生重来枪」。")
+    say("再见，我去" .. dimensionStr() .. "次元了！")
     ResumeBattle(DESPAIR)
 end
 
+function chooseFuture()
+    say("Trace... on!", 7)
+    type("将言弹「未来」装入了「人生重来枪」。")
+    say("再见，我去" .. dimensionStr() .. "次元了！")
+    ResumeBattle(NORMAL)
+end
+
+function chooseGiveup()
+    type("你 什 么 也 没 有 做", 4)
+    ResumeBattle(GIVEUP)
+end
+
 function netherHopeOrDespair()
-    say("「希望」和「绝望」都不选择...你要怎么做？")
-    choose("「希望」和「绝望」都不选择...你要怎么做？", {
-        {info="我要靠自己的力量开创「未来」！", action=curry(ResumeBattle, NORMAL)},
-        {info="我要否定「弹丸论破」！", action=curry(ResumeBattle, GIVEUP)},
+    if FailCount() <= 3 then
+        say("（可是，现如今不论是希望还是绝望都早就不流行了呀...）", 30)
+    end
+    choose("（可是，现如今不论是希望还是绝望都早就不流行了呀...）", {
+        {info="我要靠自己的力量开创「未来」！", action=chooseFuture},
+        {info="我要否定「弹丸论破」！", action=chooseGiveup},
     })
 end
 
@@ -63,6 +82,38 @@ end
 
 function b()
     say("you chose route b")
+end
+
+function dimensionStr()
+    d = 3 - FailCount()
+    if d == 2 then
+        return "二"
+    elseif d == 1 then
+        return "一"
+    elseif d == 0 then
+        return "零"
+    elseif d == -1 then
+        return "负一"
+    elseif d == -2 then
+        return "负二"
+    elseif d == -3 then
+        return "负三"
+    elseif d == -4 then
+        return "负四"
+    elseif d == -5 then
+        return "负五"
+    elseif d == -6 then
+        return "负六"
+    elseif d == -7 then
+        return "负七"
+    elseif d == -8 then
+        return "负八"
+    elseif d == -9 then
+        return "负⑨"
+    else
+        return d
+    end
+    
 end
 
 return main

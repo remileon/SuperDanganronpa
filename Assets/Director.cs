@@ -12,6 +12,7 @@ public class Director : MonoBehaviour
     private GameObject[] curEnemies;
     public EnemyWaves[] enemyWaves;
     private Scenario scenario;
+    public GameObject despairWeapon;
 
     private void Awake()
     {
@@ -20,11 +21,16 @@ public class Director : MonoBehaviour
         scenario = gameObject.GetComponent<ScenarioFactory>()
             .create();
 
-        scenario.Run(GameStatus.Instance.enemyProgress, cancellationTokenSource.Token);
+        Invoke("RunScenario", 1);
     }
 
     private void Update()
     {
+    }
+
+    private void RunScenario()
+    {
+        scenario.Run(GameStatus.Instance.enemyProgress, cancellationTokenSource.Token);
     }
 
     private void SummonBw()
@@ -34,19 +40,19 @@ public class Director : MonoBehaviour
         // negative
         if (bwBuffs.Contains(BwBuff.Negative)) return;
         // hope
-        gameStatus.bwLife = bwBuffs.Contains(BwBuff.Hope) ? 15 : 3;
+        gameStatus.bwLife = bwBuffs.Contains(BwBuff.Hope) ? 18 : 3;
         if (gameStatus.isDebugging)
         {
             gameStatus.bwLife = 1;
         }
+        var gameObject = Instantiate(bw);
         // despair
         if (bwBuffs.Contains(BwBuff.Despair))
         {
-            // todo: attach more weapons
+            var weaponSlot = gameObject.GetComponent<AttachWeapons>().weaponSlots[0];
+            weaponSlot.weapon = despairWeapon;
         }
-        // negative
 
-        var gameObject = Instantiate(bw);
         gameObject.GetComponent<Bw>().director = this;
     }
 

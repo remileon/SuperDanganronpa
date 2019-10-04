@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
 using UnityEngine;
 
 public class DefaultWeapon : BaseWeapon
@@ -12,9 +13,15 @@ public class DefaultWeapon : BaseWeapon
         trans = GetComponent<Transform>();
     }
 
-    public override void Shoot()
+    public override bool Shoot()
     {
+        if (InputController.Instance.shootAction.ReadValue<float>() < 0.5f)
+        {
+            return false;
+        }
+
         GameObject newBullet = Instantiate(bullet, trans.position + new Vector3(), trans.rotation) as GameObject;
         BaseModify(newBullet);
+        return true;
     }
 }

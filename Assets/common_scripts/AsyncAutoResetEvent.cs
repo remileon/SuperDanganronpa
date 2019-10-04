@@ -41,5 +41,13 @@ namespace common_scripts
 
             toRelease?.SetResult(true);
         }
+
+        public void Reset()
+        {
+            lock (m_waits)
+            {
+                m_signaled = false;
+            }
+        }
     }
 }

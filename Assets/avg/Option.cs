@@ -21,15 +21,7 @@ public class Option : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            animator.SetBool(hoveredHash, true);
-        }
 
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            animator.SetBool(hoveredHash, false);
-        }
     }
 
     public void SetHovered(bool hovered)

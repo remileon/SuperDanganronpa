@@ -52,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5ed25eaa1ff7e954f9233dd20cb5c5c0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -140,7 +140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ExplodeEffect: {fileID: 1750046272117532, guid: 6f51f1cc5fb19499ba0e9d0f04a58c58,
     type: 3}
+  life: 1
+  startAge: 0
   tags:
   - enemy
   - enemy_bullet_orange
-  life: 1

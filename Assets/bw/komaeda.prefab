@@ -124,6 +124,7 @@ MonoBehaviour:
     rotateSpeed: 
     bullet: {fileID: 0}
     delay: 
+    bulletSpeed: 
   delay: 1
 --- !u!114 &114267643732055630
 MonoBehaviour:

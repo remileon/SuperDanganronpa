@@ -73,10 +73,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ExplodeEffect: {fileID: 1971160062460528, guid: c6f1e4afcb24147ecbd45f46dc8c66e8,
     type: 3}
+  life: 100
+  startAge: 0
   tags:
   - bw
   - bullet
-  life: 1000
 --- !u!114 &7647432478490460414
 MonoBehaviour:
   m_ObjectHideFlags: 0

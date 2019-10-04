@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using common_scripts;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Scenario
 {
@@ -51,7 +50,11 @@ public class Scenario
 
     public Scenario WaitForAllEnemyDestroyed()
     {
-        actions.Add(async () => { await enemyAllDestroyEvent.WaitAsync(); });
+        actions.Add(async () =>
+        {
+            enemyAllDestroyEvent.Reset();
+            await enemyAllDestroyEvent.WaitAsync();
+        });
         return this;
     }
 
@@ -65,6 +68,7 @@ public class Scenario
     {
         actions.Add(async () =>
         {
+            BgmController.Instance.Stop(2);
             GameStatus.Instance.scenario = "end";
             SceneFader.Instance.FadeToAvg();
         });

@@ -72,10 +72,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ExplodeEffect: {fileID: 1971160062460528, guid: c6f1e4afcb24147ecbd45f46dc8c66e8,
     type: 3}
+  life: 10
+  startAge: 0.5
   tags:
   - bw
   - bullet
-  life: 10
 --- !u!114 &8815812724276322354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,12 +96,16 @@ MonoBehaviour:
     shootInterval: 
     rotateSpeed: 
     bullet: {fileID: 0}
+    delay: 
+    bulletSpeed: 
   - position: {x: 1, y: 0, z: 0}
     rotate: {x: 0, y: 0, z: 0}
     weapon: {fileID: 1097703502245938, guid: b58d1ef0603b9443eb8dbf6cf9d9226f, type: 3}
     shootInterval: 
     rotateSpeed: 
     bullet: {fileID: 0}
+    delay: 
+    bulletSpeed: 
   delay: 0.5
 --- !u!23 &8502958847477351320
 MeshRenderer:

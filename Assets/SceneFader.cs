@@ -29,6 +29,13 @@ public class SceneFader : MonoBehaviour
         animator.SetTrigger(FadeOut);
     }
 
+    public void FadeToBattle()
+    {
+        nextScene = "battle";
+        
+        animator.SetTrigger(FadeOut);
+    }
+
     public void OnFadeOutComplete()
     {
         SceneManager.LoadScene(nextScene);

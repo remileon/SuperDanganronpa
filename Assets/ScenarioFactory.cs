@@ -38,7 +38,7 @@ public class ScenarioFactory : MonoBehaviour
         //
         scenario
             .Checkpoint()
-            .WaitForSeconds(4.15f)
+            .WaitForSeconds(3.43f)
             .Checkpoint()
             .Spawn(enemy("日向創")
                 .activePos(0, 2)
@@ -72,6 +72,7 @@ public class ScenarioFactory : MonoBehaviour
                 .cubicPath(bc.line(1, 0))
                 .weapon(octoOrangeWeapon, 0.5f)
                 .weapon(octoOrangeWeapon, 0.5f, 0.25f, 0f, new Vector3(0, 0, 5))
+                .weapon(octoRedWeapon, 2f, 0, 0, new Vector3(0, 0, 22.5f))
             )
             .Spawn(enemy("演：再熊")
                 .initPos(9, 1.5f)
@@ -374,11 +375,11 @@ public class ScenarioFactory : MonoBehaviour
         //
         scenario
             .Checkpoint()
-            .Spawn(enemy("ソニア・ネヴァーマインド")
+            .Spawn(enemy("ソニア·ネヴァーマインド")
                 .initPos(-9, 0)
-                .activePos(0f, 0)
+                .activePos(-0.5f, 0)
                 .exitPos(9, 1)
-                .cubicPath(bc.line(0, 1))
+                .cubicPath(bc.line(1, 0))
                 .weapon(randomOrangeWeapon, 0.3f)
                 .weapon(randomOrangeWeapon, 0.3f, default, default, new Vector3(0, 0, 45))
                 .weapon(randomOrangeWeapon, 0.3f, default, default, new Vector3(0, 0, -45))
@@ -566,6 +567,7 @@ public class ScenarioFactory : MonoBehaviour
                 .cubicPath(bc.line(0, -0.01f))
                 .weapon(octoRedWeapon, 0.2f, 0f, 60f)
                 .weapon(octoRedWeapon, 0.2f, 0f, -60f)
+                .life(30)
             )
             .Spawn(enemy("演：奇异")
                 .activePos(0, 2)
@@ -601,6 +603,7 @@ public class ScenarioFactory : MonoBehaviour
                     .exitPos((float) (10 * Math.Cos(angle)), (float) (10 * Math.Sin(angle)) + 0.75f)
                     .cubicPath(bc.random())
                     .weapon(randomOrangeWeapon, 2f)
+                    .life(15)
                 );
         }
 
@@ -631,6 +634,7 @@ public class ScenarioFactory : MonoBehaviour
                     .exitPos((float) (10 * Math.Cos(angle)), (float) (10 * Math.Sin(angle)) + 0.75f)
                     .cubicPath(bc.random())
                     .weapon(randomOrangeWeapon, 2f)
+                    .life(15)
                 );
         }
 
@@ -656,6 +660,7 @@ public class ScenarioFactory : MonoBehaviour
                 .exitPos(2, -4.62f)
                 .cubicPath(bc.line(0, -1.5f))
                 .weapon(randomOrangeWeapon, 3f, default, default, default, default, 0.8f)
+                .life(15)
             )
             .WaitForSeconds(1);
         scenario
@@ -667,6 +672,7 @@ public class ScenarioFactory : MonoBehaviour
                 .exitPos(4, -4.62f)
                 .cubicPath(bc.line(0, -1.5f))
                 .weapon(randomOrangeWeapon, 3f, default, default, default, default, 0.8f)
+                .life(15)
             )
             .WaitForSeconds(2f);
         // 配音协力：翔子
@@ -689,6 +695,7 @@ public class ScenarioFactory : MonoBehaviour
                 .exitPos(-0.5f, -4.62f)
                 .cubicPath(bc.line(0, -1.5f))
                 .weapon(randomOrangeWeapon, 3f, default, default, default, default, 0.8f)
+                .life(15)
             )
             .WaitForSeconds(2f);
         // 视频监督：雷精 再熊
@@ -711,16 +718,18 @@ public class ScenarioFactory : MonoBehaviour
                 .exitPos(1f, -4.62f)
                 .cubicPath(bc.line(0, -1.5f))
                 .weapon(randomOrangeWeapon, 3f, default, default, default, default, 0.8f)
+                .life(15)
             )
             .WaitForSeconds(1);
         scenario
             .Spawn(enemy("再熊")
                 .fontSize(3)
                 .initPos(-1f, 5f)
-                .activePos(-1f, 0)
+                .activePos(-1f, 0.5f)
                 .exitPos(-1f, -4.62f)
                 .cubicPath(bc.line(0, -1.5f))
                 .weapon(randomOrangeWeapon, 3f, default, default, default, default, 0.8f)
+                .life(15)
             )
             .WaitForSeconds(1.5f);
         //
@@ -743,6 +752,8 @@ public class ScenarioFactory : MonoBehaviour
                 .activePos(-3, 2.2f)
                 .exitPos(9, 2.2f)
                 .cubicPath(bc.line(2, 0))
+                .weapon(octoOrangeWeapon, 3f, 0, 22.5f)
+                .life(15)
             )
             .Spawn(enemy("程序")
                 .fontSize(3.5f)
@@ -750,6 +761,8 @@ public class ScenarioFactory : MonoBehaviour
                 .activePos(3, 2.2f)
                 .exitPos(-9, 2.2f)
                 .cubicPath(bc.line(-2, 0))
+                .weapon(octoOrangeWeapon, 3f, 0, 22.5f)
+                .life(15)
             )
             .WaitForSeconds(0.5f)
             .Spawn(enemy("篮子")
@@ -758,6 +771,8 @@ public class ScenarioFactory : MonoBehaviour
                 .activePos(-3, 1.5f)
                 .exitPos(9, 1)
                 .cubicPath(bc.line(2, 0))
+                .weapon(octoOrangeWeapon, 3f, 1.5f, 22.5f)
+                .life(15)
             )
             .Spawn(enemy("雷精")
                 .fontSize(3.5f)
@@ -765,6 +780,8 @@ public class ScenarioFactory : MonoBehaviour
                 .activePos(3, 1.5f)
                 .exitPos(-9, 1)
                 .cubicPath(bc.line(-2, 0))
+                .weapon(octoOrangeWeapon, 3f, 1.5f, 22.5f)
+                .life(15)
             )
             .WaitForAllEnemyDestroyed();
         // 舞美监督：腺嘧啶 磷酸钙 蛋勒
@@ -785,6 +802,7 @@ public class ScenarioFactory : MonoBehaviour
                 .initSpeed(-4 , 2)
                 .k(0.08f)
                 .weapon(randomOrangeWeapon, 2f)
+                .life(15)
             )
             .Spawn(enemy2("磷酸钙")
                 .fontSize(3)
@@ -793,6 +811,7 @@ public class ScenarioFactory : MonoBehaviour
                 .initSpeed(-6.5f , 0.5f)
                 .k(0.06f)
                 .weapon(randomOrangeWeapon, 2f)
+                .life(15)
             )
             .Spawn(enemy2("蛋勒")
                 .fontSize(3)
@@ -801,6 +820,7 @@ public class ScenarioFactory : MonoBehaviour
                 .initSpeed(-6 , 3)
                 .k(0.1f)
                 .weapon(randomOrangeWeapon, 2f)
+                .life(15)
             )
             .WaitForAllEnemyDestroyed();
 //        化妆：磷酸钙 萌汐 鬼裔 小月 咩咩 风筝 莫良 罐头 柿子
@@ -821,6 +841,7 @@ public class ScenarioFactory : MonoBehaviour
                 .initSpeed(4 , 2)
                 .k(0.08f)
                 .weapon(randomOrangeWeapon, 2f)
+                .life(15)
             )
             .Spawn(enemy2("萌汐")
                 .fontSize(3)
@@ -829,6 +850,7 @@ public class ScenarioFactory : MonoBehaviour
                 .initSpeed(6.5f , 0.5f)
                 .k(0.06f)
                 .weapon(randomOrangeWeapon, 2f)
+                .life(15)
             )
             .Spawn(enemy2("鬼裔")
                 .fontSize(3)
@@ -837,6 +859,7 @@ public class ScenarioFactory : MonoBehaviour
                 .initSpeed(6 , 3)
                 .k(0.1f)
                 .weapon(randomOrangeWeapon, 2f)
+                .life(15)
             )
             .Spawn(enemy2("小月")
                 .fontSize(3)
@@ -845,6 +868,7 @@ public class ScenarioFactory : MonoBehaviour
                 .initSpeed(4, 0.5f)
                 .k(0.05f)
                 .weapon(randomOrangeWeapon, 2f)
+                .life(15)
             )
             .Spawn(enemy2("咩咩")
                 .fontSize(3)
@@ -853,6 +877,7 @@ public class ScenarioFactory : MonoBehaviour
                 .initSpeed(6 , 0.2f)
                 .k(0.1f)
                 .weapon(randomOrangeWeapon, 2f)
+                .life(15)
             )
             .Spawn(enemy2("风筝")
                 .fontSize(3)
@@ -861,6 +886,7 @@ public class ScenarioFactory : MonoBehaviour
                 .initSpeed(6 , 0)
                 .k(0.15f)
                 .weapon(randomOrangeWeapon, 2f)
+                .life(15)
             )
             .Spawn(enemy2("莫良")
                 .fontSize(3)
@@ -869,6 +895,7 @@ public class ScenarioFactory : MonoBehaviour
                 .initSpeed(8, 2.5f)
                 .k(0.1f)
                 .weapon(randomOrangeWeapon, 2f)
+                .life(15)
             )
             .Spawn(enemy2("罐头")
                 .fontSize(3)
@@ -877,6 +904,7 @@ public class ScenarioFactory : MonoBehaviour
                 .initSpeed(3 , 1)
                 .k(0.1f)
                 .weapon(randomOrangeWeapon, 2f)
+                .life(15)
             )
             .Spawn(enemy2("柿子")
                 .fontSize(3)
@@ -885,6 +913,7 @@ public class ScenarioFactory : MonoBehaviour
                 .initSpeed(3.5f, 3)
                 .k(0.1f)
                 .weapon(randomOrangeWeapon, 2f)
+                .life(15)
             )
             .WaitForAllEnemyDestroyed();
 //            灯光：夜宵 雷精 小海 
@@ -905,6 +934,7 @@ public class ScenarioFactory : MonoBehaviour
                 .exitPos(9, 2)
                 .cubicPath(bc.line(8, 0))
                 .weapon(randomOrangeWeapon, 0.8f)
+                .life(15)
             )
             .WaitForSeconds(1)
             .Spawn(enemy("雷精")
@@ -914,6 +944,7 @@ public class ScenarioFactory : MonoBehaviour
                 .exitPos(9, 2)
                 .cubicPath(bc.line(8, 0))
                 .weapon(randomOrangeWeapon, 0.8f)
+                .life(15)
             )
             .WaitForSeconds(1)
             .Spawn(enemy("小海")
@@ -923,6 +954,7 @@ public class ScenarioFactory : MonoBehaviour
                 .exitPos(9, 2)
                 .cubicPath(bc.line(8, 0))
                 .weapon(randomOrangeWeapon, 0.8f)
+                .life(15)
             )
             .WaitForSeconds(1);
 //            道具：兄贵 奇异 萌汐 绯红
@@ -943,6 +975,7 @@ public class ScenarioFactory : MonoBehaviour
                 .exitPos(-9, 1.2f)
                 .cubicPath(bc.line(-8, 0))
                 .weapon(randomOrangeWeapon, 0.8f)
+                .life(15)
             )
             .WaitForSeconds(1)
             .Spawn(enemy("奇异")
@@ -952,6 +985,7 @@ public class ScenarioFactory : MonoBehaviour
                 .exitPos(-9, 1.2f)
                 .cubicPath(bc.line(-8, 0))
                 .weapon(randomOrangeWeapon, 0.8f)
+                .life(15)
             )
             .WaitForSeconds(1)
             .Spawn(enemy("萌汐")
@@ -961,6 +995,7 @@ public class ScenarioFactory : MonoBehaviour
                 .exitPos(-9, 1.2f)
                 .cubicPath(bc.line(-8, 0))
                 .weapon(randomOrangeWeapon, 0.8f)
+                .life(15)
             )
             .WaitForSeconds(1)
             .Spawn(enemy("绯红")
@@ -970,6 +1005,7 @@ public class ScenarioFactory : MonoBehaviour
                 .exitPos(-9, 1.2f)
                 .cubicPath(bc.line(-8, 0))
                 .weapon(randomOrangeWeapon, 0.8f)
+                .life(15)
             )
             .WaitForSeconds(1);
 //        舞台后勤：聊无 lickey 木木
@@ -990,6 +1026,7 @@ public class ScenarioFactory : MonoBehaviour
                 .exitPos(9, 0.4f)
                 .cubicPath(bc.line(8, 0))
                 .weapon(randomOrangeWeapon, 0.8f)
+                .life(15)
             )
             .WaitForSeconds(1)
             .Spawn(enemy("lickey")
@@ -999,6 +1036,7 @@ public class ScenarioFactory : MonoBehaviour
                 .exitPos(9, 0.4f)
                 .cubicPath(bc.line(8, 0))
                 .weapon(randomOrangeWeapon, 0.8f)
+                .life(15)
             )
             .WaitForSeconds(1)
             .Spawn(enemy("木木")
@@ -1008,6 +1046,7 @@ public class ScenarioFactory : MonoBehaviour
                 .exitPos(9, 0.4f)
                 .cubicPath(bc.line(8, 0))
                 .weapon(randomOrangeWeapon, 0.8f)
+                .life(15)
             )
             .WaitForSeconds(1);
 //            摄像提供：itachi
@@ -1028,6 +1067,7 @@ public class ScenarioFactory : MonoBehaviour
                 .exitPos(-9, -0.4f)
                 .cubicPath(bc.line(-8, 0))
                 .weapon(randomOrangeWeapon, 0.8f)
+                .life(15)
             );
 
         scenario.WaitForAllEnemyDestroyed();
@@ -1035,13 +1075,29 @@ public class ScenarioFactory : MonoBehaviour
         scenario.Checkpoint()
             .Spawn(enemy("特别鸣谢")
                 .fontSize(5f)
+                .weapon(octoRedWeapon, 1.5f, 0, 10f)
+                .weapon(octoOrangeWeapon, 1.5f, 0.75f, 10f)
+                .cubicPath(bc.line(0, -0.5f))
+                .life(30)
             )
             .WaitForAllEnemyDestroyed()
-            .Spawn(enemy("理科一号楼1405"))
+            .Spawn(enemy("理科一号楼1405")
+                .weapon(octoRedWeapon, 1.5f, 0, 10f)
+                .weapon(octoOrangeWeapon, 1.5f, 0.75f, 10f)
+                .cubicPath(bc.line(0, -0.5f))
+                .life(30)
+            )
             .WaitForAllEnemyDestroyed()
-            .Spawn(enemy("and..."))
+            .Spawn(enemy("and...")
+                .weapon(orangeWeapon, 1000f, 1000f)
+                .cubicPath(bc.line(0, -0.5f))
+                .life(30)
+            )
             .WaitForAllEnemyDestroyed()
-            .Spawn(enemyYou())
+            .Spawn(enemyYou()
+                .weapon(orangeWeapon, 1000f, 1000f)
+                .cubicPath(bc.line(0, -0.5f))
+            )
             .WaitForAllEnemyDestroyed();
 
         scenario.End();

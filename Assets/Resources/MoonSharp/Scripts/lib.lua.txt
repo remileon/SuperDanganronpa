@@ -19,3 +19,12 @@ function curry(func, param)
         return func(param)
     end
 end
+
+function showImg(idx, duration)
+    ShowImg(idx, duration)
+    coroutine.yield()
+end
+
+function hideImg()
+    HideImg()
+end

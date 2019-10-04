@@ -11,6 +11,7 @@ public class KeyConfig : MonoBehaviour {
 	public KeyCode moveRight = KeyCode.D;
 	public KeyCode turnLeft = KeyCode.Q;
 	public KeyCode turnRight = KeyCode.E;
+	public KeyCode shoot = KeyCode.J;
 
 	public KeyCode[] avgConfirm = {KeyCode.Return, KeyCode.J, KeyCode.Space};
 	public KeyCode[] avgUp = {KeyCode.W, KeyCode.UpArrow};

@@ -14,11 +14,13 @@ public class RandomWeapon : BaseWeapon
         trans = GetComponent<Transform>();
     }
 
-    public override void Shoot()
+    public override bool Shoot()
     {
         var newBullet = Instantiate(bullet, trans.position + new Vector3(), trans.rotation);
         var angle = Random.Range(-range / 2, range / 2);
         newBullet.transform.Rotate(0, 0, angle);
         BaseModify(newBullet);
+
+        return true;
     }
 }

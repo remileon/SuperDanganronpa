@@ -47,8 +47,8 @@ public abstract class BaseWeapon : MonoBehaviour
             // shoot
             if (nextShoot < 0.00001)
             {
-                Shoot();
-                if (hasAudio) audioSource.Play();
+                bool result = Shoot();
+                if (result && hasAudio) audioSource.Play();
                 nextShoot = shootInterval;
             }
 
@@ -57,7 +57,7 @@ public abstract class BaseWeapon : MonoBehaviour
         }
     }
 
-    public abstract void Shoot();
+    public abstract bool Shoot();
 
     protected void BaseModify(GameObject newBullet)
     {

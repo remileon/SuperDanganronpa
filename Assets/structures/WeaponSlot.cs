@@ -15,4 +15,20 @@ public class WeaponSlot {
     public GameObject bullet;
     public string delay;
     public string bulletSpeed;
+
+    public WeaponSlot()
+    {
+    }
+
+    public WeaponSlot(WeaponSlot other)
+    {
+        position = other.position;
+        rotate = other.rotate;
+        weapon = other.weapon;
+        shootInterval = other.shootInterval;
+        rotateSpeed = other.rotateSpeed;
+        bullet = other.bullet;
+        delay = other.delay;
+        bulletSpeed = other.bulletSpeed;
+    }
 }

@@ -1,53 +1,53 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DestroyOnCollision : MonoBehaviour {
+public class DestroyOnCollision : MonoBehaviour
+{
+    // Use this for initialization
+
+    private float age;
+    public GameObject ExplodeEffect;
+    public int life = 1;
+    public float startAge = 0;
+    public string[] tags;
 
     private Transform trans;
-    public GameObject ExplodeEffect;
-    public string[] tags;
-    public int life = 1;
-	// Use this for initialization
-	void Start () {
-        trans = GetComponent<Transform>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-    void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        if (checkCollide(other))
-        {
-            doCollide();
-        }
+        trans = GetComponent<Transform>();
     }
 
-    bool checkCollide(Collider other)
+    // Update is called once per frame
+    private void Update()
     {
-        bool collide = false;
-        foreach (string tag in tags)
-        {
+        age += Time.deltaTime;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (checkCollide(other)) doCollide();
+    }
+
+    private bool checkCollide(Collider other)
+    {
+        if (age < startAge) return false;
+        var collide = false;
+        foreach (var tag in tags)
             if (tag.Equals(other.gameObject.tag))
-            {
-                collide = true;   
-            }
-        }
+                collide = true;
         return collide;
     }
 
-    void doCollide()
+    private void doCollide()
     {
         --life;
         if (life <= 0)
         {
             if (ExplodeEffect != null)
             {
-                GameObject effect = Instantiate(ExplodeEffect, trans.position + new Vector3(), trans.rotation) as GameObject;
+                var effect = Instantiate(ExplodeEffect, trans.position + new Vector3(), trans.rotation);
             }
+
             Destroy(gameObject);
         }
     }

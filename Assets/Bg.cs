@@ -12,9 +12,5 @@ public class Bg : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            //GameObject bwcopy = Instantiate(bw);
-        }
     }
 }

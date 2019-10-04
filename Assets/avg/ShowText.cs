@@ -37,12 +37,20 @@ public class ShowText : MonoBehaviour
 
     public void Show(string text, double speed = 10.0f, Action finishCallback = null, int audioType = AUDIO_TYPE_TYPE)
     {
+        Debug.Log("Showing: " + text);
         this.text = text;
         textTime = 0;
         textSpeed = speed;
         textFinishCallback = finishCallback;
         this.audioType = audioType;
+        textComponent.text = "";
         UpdateText();
+    }
+    
+    public bool isShowing()
+    {
+        Debug.Log("isShowing: " + textTime + "_" + textComponent.text.Length + "_" + text.Length);
+        return textTime < 0.1f || textComponent.text.Length != text.Length;
     }
 
     private void UpdateText()

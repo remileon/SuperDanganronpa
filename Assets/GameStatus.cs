@@ -7,6 +7,11 @@ using UnityEngine;
 
 public class GameStatus : MonoBehaviour
 {
+    public const int EndFlagFuture = 1;
+    public const int EndFlagHope = 2;
+    public const int EndFlagDespair = 3;
+    public const int EndFlagNegative = 4;
+    
     public bool isDebugging = true;
     public static GameStatus Instance { get; private set; }
 
@@ -21,6 +26,7 @@ public class GameStatus : MonoBehaviour
     // todo: deving
     public float bwDelay = 0.15f;
     public bool isShuttingDown = false;
+    public int endFlag = EndFlagFuture;
 
     void Awake() {
         if (Instance == null) {
