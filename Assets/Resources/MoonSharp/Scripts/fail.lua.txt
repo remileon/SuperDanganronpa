@@ -62,7 +62,7 @@ function chooseFuture()
 end
 
 function chooseGiveup()
-    type("你 什 么 也 没 有 做", 4)
+    type("......", 2)
     ResumeBattle(GIVEUP)
 end
 

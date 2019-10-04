@@ -543,7 +543,7 @@ PrefabInstance:
     - target: {fileID: -2118474112249384298, guid: b4341e35ec51741f2981e1369a04c0ea,
         type: 3}
       propertyPath: enemyProgress
-      value: 140
+      value: 208
       objectReference: {fileID: 0}
     - target: {fileID: -2118474112249384298, guid: b4341e35ec51741f2981e1369a04c0ea,
         type: 3}

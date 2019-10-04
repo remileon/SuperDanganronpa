@@ -14,7 +14,9 @@ public class BgStarGenerator : MonoBehaviour
     void Start ()
     {
         next = interval;
-	}
+        // delay 5s
+        next += 5;
+    }
 	
 	// Update is called once per frame
 	void Update ()

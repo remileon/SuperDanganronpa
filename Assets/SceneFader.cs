@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneFader : MonoBehaviour
 {
@@ -20,6 +21,13 @@ public class SceneFader : MonoBehaviour
         } else {
             Destroy (gameObject);
         }
+        
+        Invoke("StartFader", 2);
+    }
+
+    public void StartFader()
+    {
+        GetComponentInChildren<Image>().enabled = true;
     }
     
     public void FadeToAvg()

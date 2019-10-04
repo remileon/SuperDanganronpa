@@ -6,6 +6,7 @@ using UnityEngine;
 public class DefaultWeapon : BaseWeapon
 {
     private Transform trans;
+    private Bw bw;
 
     new public void Awake()
     {
@@ -13,9 +14,15 @@ public class DefaultWeapon : BaseWeapon
         trans = GetComponent<Transform>();
     }
 
+    new public void Start()
+    {
+        base.Start();
+        bw = gameObject.GetComponentInParent<Bw>();
+    }
+
     public override bool Shoot()
     {
-        if (InputController.Instance.shootAction.ReadValue<float>() < 0.5f)
+        if (bw != null && InputController.Instance.shootAction.ReadValue<float>() < 0.5f)
         {
             return false;
         }

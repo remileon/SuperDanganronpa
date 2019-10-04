@@ -13,11 +13,8 @@ public class Bw : MonoBehaviour
     private static readonly int Invincible = Animator.StringToHash("invincible");
     private Animator animator;
     public Boundary boundary;
-//    private InputAction directionAction;
     public Director director;
-
-    [SerializeField] private InputActions inputActions;
-
+    
     private float moveSpeed = 5.0f;
 
     private double protectTime;
@@ -25,7 +22,8 @@ public class Bw : MonoBehaviour
     private Transform trans;
     public UiLife uiLife;
 
-
+    [SerializeField] private AudioSource comboBreak;
+    
     private void Awake()
     {
         trans = GetComponent<Transform>();
@@ -108,6 +106,7 @@ public class Bw : MonoBehaviour
         var gameStatus = GameStatus.Instance;
         --gameStatus.bwLife;
         uiLife.LoseLife();
+        comboBreak.Play();
         if (gameStatus.bwLife <= 0)
         {
             // todo : 死亡特效
